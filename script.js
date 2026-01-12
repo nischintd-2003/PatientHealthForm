@@ -118,7 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
         validate(bloodType.value !== '', 'bloodType', 'Blood type is required.');
 
         // 8. Chronic Diseases 
-        // Note: Using form.querySelectorAll works because querySelectorAll exists on elements
         const diseases = form.querySelectorAll('input[name="disease"]:checked');
         validate(diseases.length > 0, 'diseaseGroup', 'Select at least one (or None).', true);
 

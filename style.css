@@ -13,8 +13,10 @@
 * { 
     box-sizing: border-box; 
     margin: 0; 
-    padding: 0; 
+    padding: 0;
 }
+
+
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -22,6 +24,9 @@ body {
     color: var(--text-main);
     line-height: 1.5;
     padding: 40px 20px;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 
 .main-wrapper {
@@ -275,3 +280,6 @@ input[type="checkbox"] {
     font-size: 0.85rem;
 }
 
+.prevent-select {
+
+}

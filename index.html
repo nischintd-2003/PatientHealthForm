@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Health Assessment</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <script src="script.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">  
 </head>
 <body>
 
-    <main class="main-wrapper">
+    <main class="main-wrapper" style="user-select: none;">
         
         <!-- Header -->
         <header class="page-header">
@@ -118,11 +117,11 @@
                 <div class="form-group" id="diseaseGroup">
                     <label class="required">Chronic Diseases (Select at least 1)</label>
                     <div class="checkbox-wrapper">
-                        <label class="check-box"><input type="checkbox" name="disease[]" value="None"> None</label>
-                        <label class="check-box"><input type="checkbox" name="disease[]" value="Diabetes"> Diabetes</label>
-                        <label class="check-box"><input type="checkbox" name="disease[]" value="Hypertension"> Hypertension</label>
-                        <label class="check-box"><input type="checkbox" name="disease[]" value="Asthma"> Asthma</label>
-                        <label class="check-box"><input type="checkbox" name="disease[]" value="Other"> Other</label>
+                        <label class="check-box"><input type="checkbox" name="disease" value="None"> None</label>
+                        <label class="check-box"><input type="checkbox" name="disease" value="Diabetes"> Diabetes</label>
+                        <label class="check-box"><input type="checkbox" name="disease" value="Hypertension"> Hypertension</label>
+                        <label class="check-box"><input type="checkbox" name="disease" value="Asthma"> Asthma</label>
+                        <label class="check-box"><input type="checkbox" name="disease" value="Other"> Other</label>
                     </div>
                     <small class="error-message"></small>
                 </div>
@@ -212,6 +211,6 @@
 
         </form>
     </main>
-
+    <script src="script.js" defer></script>
 </body>
 </html>

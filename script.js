@@ -32,11 +32,13 @@ document.addEventListener('DOMContentLoaded' , () => {
         e.preventDefault();
 
         let isValid = true;
+        let firstErrorElement = null;
 
         function validate(condition , id , isGroup=false){
             if(!condition){
                 isValid = false
                 isGroup ? showGroupError(id) : showError(id);
+                if (!firstErrorElement) firstErrorElement = document.getElementById(id);
             }else{
                 isGroup ? clearGroupError(id) : clearError(id);
             }
@@ -104,6 +106,12 @@ document.addEventListener('DOMContentLoaded' , () => {
 
         if(isValid){
             alert("Form submitted successfully!");
+        }else{
+            
+            const errorSection = document.querySelector('.form-group.error');
+            if (errorSection) {
+                errorSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
         }
 
     })

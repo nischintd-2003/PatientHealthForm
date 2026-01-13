@@ -187,14 +187,14 @@ document.addEventListener('DOMContentLoaded', () => {
         patient["height"] = document.getElementById('height').value;
         patient["weight"] = document.getElementById('weight').value;
         patient["bloodType"] = document.getElementById('bloodType').value;
-        patient["bp"] = document.getElementById('bp').value;
-        patient["temp"] = document.getElementById('temp').value;
+        patient["bp"] = document.getElementById('bp').value || "N/A";
+        patient["temp"] = document.getElementById('temp').value || "N/A";
 
-        patient["medications"] = document.getElementById('medications').value;
-        patient["allergies"] = document.getElementById('allergies').value;
+        patient["medications"] = document.getElementById('medications').value || "N/A";
+        patient["allergies"] = document.getElementById('allergies').value || "N/A";
 
-        patient["sleep"] = document.getElementById('sleep').value;
-        patient["diet"] = document.getElementById('diet').value;
+        patient["sleep"] = document.getElementById('sleep').value || "N/A";
+        patient["diet"] = document.getElementById('diet').value || "N/A";
 
          patient["diseases"] = []
 

@@ -1,6 +1,7 @@
+let selectedRow = null;
+
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('healthForm');
-    let selectedRow = null;
 
     // Helper Functions 
 
@@ -137,7 +138,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 insertNewRecord(data);
                 alert("Form submitted successfully!");
             }else{
-
+                updateRecord(data);
+                alert("Record updated successfully!");
             }
             clearForm();
         } else {
@@ -243,6 +245,27 @@ document.addEventListener('DOMContentLoaded', () => {
             <button class="edit" onClick="onEdit(this)" style="background-color:#ecc94b; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer; margin-right:5px;">Edit</button>
             <button class="del" onClick="onDelete(this)" style="background-color:#f56565; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">Delete</button>
         `;
+    }
+
+    function updateRecord(data) {
+
+        selectedRow.cells[0].innerHTML = data.name;
+        selectedRow.cells[1].innerHTML = data.dob;
+        selectedRow.cells[2].innerHTML = data.email;
+        selectedRow.cells[3].innerHTML = data.phone;
+        selectedRow.cells[4].innerHTML = data.height;
+        selectedRow.cells[5].innerHTML = data.weight;
+        selectedRow.cells[6].innerHTML = data.bloodType;
+        selectedRow.cells[7].innerHTML = data.bp;
+        selectedRow.cells[8].innerHTML = data.temp;
+        selectedRow.cells[9].innerHTML = data.diseases;
+        selectedRow.cells[10].innerHTML = data.medications;
+        selectedRow.cells[11].innerHTML = data.allergies;
+        selectedRow.cells[12].innerHTML = data.exercise;
+        selectedRow.cells[13].innerHTML = data.sleep;
+        selectedRow.cells[14].innerHTML = data.diet;
+ 
+
     }
 
 });

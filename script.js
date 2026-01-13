@@ -132,6 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Final Submission
         if (isValid) {
             alert("Form submitted successfully!");
+            readData();
             clearForm();
         } else {
             const errorSection = document.querySelector('.form-group.error');
@@ -150,7 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('phone').value = '';
         document.getElementById('height').value = '';
         document.getElementById('weight').value = '';
-        document.getElementById('bloodType').value = '';
         document.getElementById('bloodType').value = '';
         document.getElementById('bp').value = '';
         document.getElementById('temp').value = '';
@@ -172,6 +172,42 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         document.getElementById('privacy').checked = false ;
+
+    }
+
+    function readData(){
+
+        const patient = {};
+
+        patient["name"] = document.getElementById('fullName').value;
+        patient["dob"] = document.getElementById('dob').value;
+        patient["email"] = document.getElementById('email').value;
+        patient["phone"] = document.getElementById('phone').value;
+        patient["height"] = document.getElementById('height').value;
+        patient["weight"] = document.getElementById('weight').value;
+        patient["bloodType"] = document.getElementById('bloodType').value;
+        patient["bp"] = document.getElementById('bp').value;
+        patient["temp"] = document.getElementById('temp').value;
+
+        patient["medications"] = document.getElementById('medications').value;
+        patient["allergies"] = document.getElementById('allergies').value;
+
+        patient["sleep"] = document.getElementById('sleep').value;
+        patient["diet"] = document.getElementById('diet').value;
+
+         patient["diseases"] = []
+
+        const checkboxes = form.querySelectorAll('input[name="disease"]:checked');
+        
+        checkboxes.forEach(function(checkbox) {
+            patient["diseases"].push(checkbox.value);
+        });
+
+        patient["diseases"] = patient["diseases"].join(", ");
+        
+        patient["exercise"] = form.querySelector('input[name="exercise"]:checked').value;
+
+        console.log(patient);
 
     }
 

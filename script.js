@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
  
         newRow.insertCell(15).innerHTML = `
             <button class="edit" onClick="onEdit(this)" style="background-color:#ecc94b; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer; margin-right:5px;">Edit</button>
-            <button class="del" onClick="onDelete(this)" style="background-color:#f56565; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">Delete</button>
+            <button class="del" id="deleteRecord" onClick="onDelete(this)" style="background-color:#f56565; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">Delete</button>
         `;
     }
 
@@ -266,6 +266,12 @@ document.addEventListener('DOMContentLoaded', () => {
         selectedRow.cells[14].innerHTML = data.diet;
         
         selectedRow = null;
+
+        const deleteButton = document.getElementById('deleteRecord');
+        deleteButton.disable = false;
+        deleteButton.style.opacity = "1";
+        deleteButton.style.cursor = "pointer"
+
         document.querySelector(".btn-submit").innerHTML = 'Submit Assessment <i class="ri-send-plane-fill"></i>';
 
     }
@@ -282,7 +288,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function onEdit(td) {
         
         selectedRow = td.parentElement.parentElement;
-    
+        
+        
         document.getElementById("fullName").value = selectedRow.cells[0].innerHTML;
         document.getElementById("dob").value = selectedRow.cells[1].innerHTML;
         document.getElementById("email").value = selectedRow.cells[2].innerHTML;
@@ -334,6 +341,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById("sleep").value = selectedRow.cells[13].innerHTML;
         document.getElementById("diet").value = selectedRow.cells[14].innerHTML;
     
+        const deleteButton = document.getElementById('deleteRecord');
+        deleteButton.disable = true;
+        deleteButton.style.opacity = "0.5";
+        deleteButton.style.cursor = "not-allowed"
+
         document.querySelector(".btn-submit").innerHTML = 'Update Assessment <i class="ri-edit-line"></i>';
         
     }

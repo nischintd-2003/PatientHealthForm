@@ -250,3 +250,44 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function onEdit(td) {
+        
+        selectedRow = td.parentElement.parentElement;
+    
+        document.getElementById("fullName").value = selectedRow.cells[0].innerHTML;
+        document.getElementById("dob").value = selectedRow.cells[1].innerHTML;
+        document.getElementById("email").value = selectedRow.cells[2].innerHTML;
+        document.getElementById("phone").value = selectedRow.cells[3].innerHTML;
+        document.getElementById("height").value = selectedRow.cells[4].innerHTML;
+        document.getElementById("weight").value = selectedRow.cells[5].innerHTML;
+        document.getElementById("bloodType").value = selectedRow.cells[6].innerHTML;
+        document.getElementById("bp").value = selectedRow.cells[7].innerHTML;
+        document.getElementById("temp").value = selectedRow.cells[8].innerHTML;
+        
+        
+        const diseases = selectedRow.cells[9].innerHTML.split(", ");
+        const checkboxes = document.querySelectorAll('input[name="disease"]');
+        checkboxes.forEach(cb => {
+            cb.checked = diseases.includes(cb.value);
+        });
+    
+        document.getElementById("medications").value = selectedRow.cells[10].innerHTML;
+        document.getElementById("allergies").value = selectedRow.cells[11].innerHTML;
+    
+        
+        const exerciseValue = selectedRow.cells[12].innerHTML;
+
+        const radio = document.querySelector(`input[name="exercise"][value="${exerciseValue}"]`);
+        
+        if (radio){
+            radio.checked = true;
+        }
+    
+        document.getElementById("sleep").value = selectedRow.cells[13].innerHTML;
+        document.getElementById("diet").value = selectedRow.cells[14].innerHTML;
+    
+        document.querySelector(".btn-submit").innerHTML = 'Update Assessment <i class="ri-edit-line"></i>';
+        
+    }
+
+    

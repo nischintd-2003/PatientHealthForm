@@ -17,8 +17,11 @@
             <h1>Patient Health Assessment</h1>
             <p>Please provide accurate information to help us better understand your health status.</p>
         </header>
-
+        
+        <div class="main-content">
+        
         <!-- Form -->
+         <div class="health-form-container">
         <form id="healthForm" novalidate>
 
             <!-- Personal Information -->
@@ -210,6 +213,38 @@
             </footer>
 
         </form>
+        </div>
+
+        <!-- Patient Data -->
+        <div class="display-patient-table">
+            <table class="patient-table" id="medical-patientlist">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>DOB</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Height</th>
+                        <th>Weight</th>
+                        <th>Blood Type</th>
+                        <th>Blood Pressure</th>
+                        <th>Body Tempreture</th>
+                        <th>Chronic Diseases</th>
+                        <th>Medications</th>
+                        <th>Allergies</th>
+                        <th>Exercise</th>
+                        <th>Sleep Hours</th>
+                        <th>Diet Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+
+        </div>
+
     </main>
     <script src="script.js" defer></script>
 </body>

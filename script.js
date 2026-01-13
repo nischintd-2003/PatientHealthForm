@@ -132,6 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Final Submission
         if (isValid) {
             alert("Form submitted successfully!");
+            clearForm();
         } else {
             const errorSection = document.querySelector('.form-group.error');
             if (errorSection) {
@@ -139,5 +140,40 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+
+
+    function clearForm(){
+
+        document.getElementById('fullName').value = '';
+        document.getElementById('dob').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('phone').value = '';
+        document.getElementById('height').value = '';
+        document.getElementById('weight').value = '';
+        document.getElementById('bloodType').value = '';
+        document.getElementById('bloodType').value = '';
+        document.getElementById('bp').value = '';
+        document.getElementById('temp').value = '';
+
+        document.getElementById('medications').value = '';
+        document.getElementById('allergies').value = '';
+
+        document.getElementById('sleep').value = '';
+        document.getElementById('diet').value ='';
+
+        const checkboxes = form.querySelectorAll('input[name="disease"]');
+        checkboxes.forEach(function(checkbox) {
+            checkbox.checked = false;
+        });
+
+        const radioButtons = form.querySelectorAll('input[name="exercise"]');
+        radioButtons.forEach(function(radio) {
+            radio.checked = false;
+        });
+
+        document.getElementById('privacy').checked = false ;
+
+    }
+
 });
 

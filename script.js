@@ -132,9 +132,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Final Submission
         if (isValid) {
-            alert("Form submitted successfully!");
             const data = readData();
-            insertNewRecord(data);
+            if(selectedRow == null){
+                insertNewRecord(data);
+                alert("Form submitted successfully!");
+            }else{
+
+            }
             clearForm();
         } else {
             const errorSection = document.querySelector('.form-group.error');
@@ -194,8 +198,8 @@ document.addEventListener('DOMContentLoaded', () => {
         patient["medications"] = document.getElementById('medications').value || "N/A";
         patient["allergies"] = document.getElementById('allergies').value || "N/A";
 
-        patient["sleep"] = document.getElementById('sleep').value || "N/A";
-        patient["diet"] = document.getElementById('diet').value || "N/A";
+        patient["sleep"] = document.getElementById('sleep').value;
+        patient["diet"] = document.getElementById('diet').value;
 
          patient["diseases"] = []
 
@@ -261,8 +265,18 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById("height").value = selectedRow.cells[4].innerHTML;
         document.getElementById("weight").value = selectedRow.cells[5].innerHTML;
         document.getElementById("bloodType").value = selectedRow.cells[6].innerHTML;
-        document.getElementById("bp").value = selectedRow.cells[7].innerHTML;
-        document.getElementById("temp").value = selectedRow.cells[8].innerHTML;
+
+        if(selectedRow.cells[7].innerHTML == "N/A"){
+            document.getElementById("bp").value = ""
+        }else{
+            document.getElementById("bp").value = selectedRow.cells[7].innerHTML;
+        }
+
+        if(selectedRow.cells[8].innerHTML == "N/A"){
+            document.getElementById("temp").value = ""
+        }else{
+            document.getElementById("temp").value = selectedRow.cells[8].innerHTML;
+        }       
         
         
         const diseases = selectedRow.cells[9].innerHTML.split(", ");
@@ -271,9 +285,18 @@ document.addEventListener('DOMContentLoaded', () => {
             cb.checked = diseases.includes(cb.value);
         });
     
-        document.getElementById("medications").value = selectedRow.cells[10].innerHTML;
-        document.getElementById("allergies").value = selectedRow.cells[11].innerHTML;
-    
+
+        if(selectedRow.cells[10].innerHTML == "N/A"){
+            document.getElementById("medications").value = ""
+        }else{
+            document.getElementById("medications").value = selectedRow.cells[10].innerHTML;
+        }
+
+        if(selectedRow.cells[11].innerHTML == "N/A"){
+            document.getElementById("allergies").value = ""
+        }else{
+            document.getElementById("allergies").value = selectedRow.cells[11].innerHTML;
+        }        
         
         const exerciseValue = selectedRow.cells[12].innerHTML;
 
@@ -290,4 +313,4 @@ document.addEventListener('DOMContentLoaded', () => {
         
     }
 
-    
+

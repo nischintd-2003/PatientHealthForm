@@ -18,8 +18,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function clearError(elementId) {
         const element = document.getElementById(elementId);
+        if (!element) return;
+        
         const formGroup = element.closest('.form-group');
-        formGroup.classList.remove('error');
+
+        if (formGroup) {
+            formGroup.classList.remove('error');
+            const errorMsg = formGroup.querySelector('.error-message');
+            if (errorMsg) errorMsg.innerText = '';
+        }
     }
 
     function showGroupError(groupId, message) {
@@ -276,6 +283,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
+    function setupInputListeners() {
+
+        const inputs = form.querySelectorAll('input, select, textarea');
+    
+        inputs.forEach(input => {
+            input.addEventListener('input', () => {
+                if (input.name === "disease") {
+                    clearGroupError('diseaseGroup');
+                } else if (input.name === "exercise") {
+                    clearGroupError('exerciseGroup');
+                } else if (input.id === "privacy") {
+                    clearGroupError('privacyGroup');
+                } else {
+                    clearError(input.id);
+                }
+            });
+        });
+    }
+
+    setupInputListeners();
+
 });
 
     function onDelete(td) {
@@ -349,5 +377,3 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector(".btn-submit").innerHTML = 'Update Assessment <i class="ri-edit-line"></i>';
         
     }
-
-

@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('healthForm');
+    let selectedRow = null;
 
     // Helper Functions 
 
@@ -235,10 +236,17 @@ document.addEventListener('DOMContentLoaded', () => {
         newRow.insertCell(14).innerHTML = data.diet;
  
         newRow.insertCell(15).innerHTML = `
-            <button onClick="onEdit(this)" style="background-color:#ecc94b; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer; margin-right:5px;">Edit</button>
-            <button onClick="onDelete(this)" style="background-color:#f56565; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">Delete</button>
+            <button class="edit" onClick="onEdit(this)" style="background-color:#ecc94b; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer; margin-right:5px;">Edit</button>
+            <button class="del" onClick="onDelete(this)" style="background-color:#f56565; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">Delete</button>
         `;
     }
 
 });
+
+    function onDelete(td) {
+        if (confirm('Are you sure you want to delete this record?')) {
+            const row = td.parentElement.parentElement;
+            row.remove();
+        }
+    }
 

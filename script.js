@@ -264,7 +264,9 @@ document.addEventListener('DOMContentLoaded', () => {
         selectedRow.cells[12].innerHTML = data.exercise;
         selectedRow.cells[13].innerHTML = data.sleep;
         selectedRow.cells[14].innerHTML = data.diet;
- 
+        
+        selectedRow = null;
+        document.querySelector(".btn-submit").innerHTML = 'Submit Assessment <i class="ri-send-plane-fill"></i>';
 
     }
 

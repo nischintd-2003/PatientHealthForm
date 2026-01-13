@@ -132,7 +132,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Final Submission
         if (isValid) {
             alert("Form submitted successfully!");
-            readData();
+            const data = readData();
+            insertNewRecord(data);
             clearForm();
         } else {
             const errorSection = document.querySelector('.form-group.error');
@@ -207,8 +208,36 @@ document.addEventListener('DOMContentLoaded', () => {
         
         patient["exercise"] = form.querySelector('input[name="exercise"]:checked').value;
 
-        console.log(patient);
+        return patient;
 
+    }
+
+
+    function insertNewRecord(data){
+
+        const table = document.getElementById('medical-patientlist').getElementsByTagName('tbody')[0];
+        const newRow = table.insertRow(table.length);
+
+        newRow.insertCell(0).innerHTML = data.name;
+        newRow.insertCell(1).innerHTML = data.dob;
+        newRow.insertCell(2).innerHTML = data.email;
+        newRow.insertCell(3).innerHTML = data.phone;
+        newRow.insertCell(4).innerHTML = data.height;
+        newRow.insertCell(5).innerHTML = data.weight;
+        newRow.insertCell(6).innerHTML = data.bloodType;
+        newRow.insertCell(7).innerHTML = data.bp;
+        newRow.insertCell(8).innerHTML = data.temp;
+        newRow.insertCell(9).innerHTML = data.diseases;
+        newRow.insertCell(10).innerHTML = data.medications;
+        newRow.insertCell(11).innerHTML = data.allergies;
+        newRow.insertCell(12).innerHTML = data.exercise;
+        newRow.insertCell(13).innerHTML = data.sleep;
+        newRow.insertCell(14).innerHTML = data.diet;
+ 
+        newRow.insertCell(15).innerHTML = `
+            <button onClick="onEdit(this)" style="background-color:#ecc94b; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer; margin-right:5px;">Edit</button>
+            <button onClick="onDelete(this)" style="background-color:#f56565; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">Delete</button>
+        `;
     }
 
 });

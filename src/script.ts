@@ -167,6 +167,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 insertNewRecord(paitentData);
                 alert("Form submitted successfully!");
             }else{
+                updateRecord(paitentData);
                 alert("Record updated successfully!");
             }
             clearForm();
@@ -277,6 +278,85 @@ document.addEventListener('DOMContentLoaded',()=>{
 
         }
 
+
+        function updateRecord(data: Patient) {
+
+            if(!selectedRow) return;
+
+            if(selectedRow.cells[0]?.innerHTML != undefined){
+  
+                selectedRow.cells[0].innerHTML = data.name;
+            }
+            if(selectedRow.cells[1]?.innerHTML != undefined){
+
+                selectedRow.cells[1].innerHTML = data.dob;
+            }
+            if(selectedRow.cells[2]?.innerHTML != undefined){
+
+                selectedRow.cells[2].innerHTML = data.email;
+            }
+            if(selectedRow.cells[3]?.innerHTML != undefined){
+
+                selectedRow.cells[3].innerHTML = data.phone;
+            }
+            if(selectedRow.cells[4]?.innerHTML != undefined){
+
+                selectedRow.cells[4].innerHTML = data.height;
+            } 
+            if(selectedRow.cells[5]?.innerHTML != undefined){
+
+                selectedRow.cells[5].innerHTML = data.weight;
+            }
+            if(selectedRow.cells[6]?.innerHTML != undefined){
+
+                selectedRow.cells[6].innerHTML = data.bloodType;
+            }  
+            if(selectedRow.cells[7]?.innerHTML != undefined){
+
+                selectedRow.cells[7].innerHTML = data.bp;
+            }
+            if(selectedRow.cells[8]?.innerHTML != undefined){
+
+                selectedRow.cells[8].innerHTML = data.temp;
+            }  
+            if(selectedRow.cells[9]?.innerHTML != undefined){
+
+                selectedRow.cells[9].innerHTML = data.diseases;
+            }
+            if(selectedRow.cells[10]?.innerHTML != undefined){
+
+                selectedRow.cells[10].innerHTML = data.medications;
+            }
+            if(selectedRow.cells[11]?.innerHTML != undefined){
+
+                selectedRow.cells[11].innerHTML = data.allergies;
+            }
+            if(selectedRow.cells[12]?.innerHTML != undefined){
+
+                selectedRow.cells[12].innerHTML = data.exercise;
+            }
+            if(selectedRow.cells[13]?.innerHTML != undefined){
+
+                selectedRow.cells[13].innerHTML = data.sleep;
+            }
+            if(selectedRow.cells[14]?.innerHTML != undefined){
+
+                selectedRow.cells[14].innerHTML = data.diet;
+            }                                                                                                                                                                  
+                
+            selectedRow = null;
+
+            const deleteButton = document.getElementById('deleteRecord') as HTMLButtonElement;
+            deleteButton.disabled = false;
+            deleteButton.style.opacity = "1";
+            deleteButton.style.cursor = "pointer"
+
+            const submitBtn = document.querySelector(".btn-submit") as HTMLButtonElement;
+            submitBtn.innerHTML = 'Submit Assessment <i class="ri-send-plane-fill"></i>';
+            
+        }        
+
+
     })
 
 })
@@ -373,7 +453,11 @@ document.addEventListener('DOMContentLoaded',()=>{
         if(selectedRow.cells[14]?.innerHTML !== undefined){
             (document.getElementById("diet") as HTMLSelectElement).value = selectedRow.cells[14].innerHTML;
         }       
- 
+        
+        const deleteButton = document.getElementById('deleteRecord') as HTMLButtonElement;
+        deleteButton.disabled = true;
+        deleteButton.style.opacity = "0.5";
+        deleteButton.style.cursor = "not-allowed"    
         
         const submitBtn = document.querySelector(".btn-submit") as HTMLButtonElement;
         submitBtn.innerHTML = 'Update Assessment <i class="ri-edit-line"></i>';

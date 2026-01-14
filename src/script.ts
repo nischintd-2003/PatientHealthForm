@@ -142,14 +142,46 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 
         if(isValid){
-            console.log("Validation Successful!");
             alert("Form submitted successfully!");
+            clearForm();
         }else{
             
             const errorSection = document.querySelector('.form-group.error');
             if (errorSection) {
                 errorSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
+        }
+
+        function clearForm(){
+
+            (document.getElementById('fullName') as HTMLInputElement).value = '';
+            (document.getElementById('dob') as HTMLInputElement).value = '';
+            (document.getElementById('email') as HTMLInputElement).value = '';
+            (document.getElementById('phone') as HTMLInputElement).value = '';
+            (document.getElementById('height') as HTMLInputElement).value = '';
+            (document.getElementById('weight') as HTMLInputElement).value = '';
+            (document.getElementById('bloodType') as HTMLSelectElement).value = '';
+            (document.getElementById('bp') as HTMLInputElement).value = '';
+            (document.getElementById('temp') as HTMLInputElement).value = '';
+
+            (document.getElementById('medications') as HTMLInputElement).value = '';
+            (document.getElementById('allergies') as HTMLInputElement).value = '';
+
+            (document.getElementById('sleep') as HTMLInputElement).value = '';
+            (document.getElementById('diet') as HTMLSelectElement).value ='';
+
+            const checkboxes = form.querySelectorAll('input[name="disease"]') as NodeListOf<HTMLInputElement>;
+            checkboxes.forEach(function(checkbox) {
+                checkbox.checked = false;
+            });
+
+            const radioButtons = form.querySelectorAll('input[name="exercise"]') as NodeListOf<HTMLInputElement>;
+            radioButtons.forEach(function(radio) {
+                radio.checked = false;
+            });
+
+            (document.getElementById('privacy') as HTMLInputElement).checked = false ;
+
         }
 
     })

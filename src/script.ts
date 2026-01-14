@@ -162,8 +162,9 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 
         if(isValid){
-            const data = readData();
+            const paitentData = readData();
             if(selectedRow == null){
+                insertNewRecord(paitentData);
                 alert("Form submitted successfully!");
             }else{
                 alert("Record updated successfully!");
@@ -244,6 +245,36 @@ document.addEventListener('DOMContentLoaded',()=>{
             const exercise = exerciseRadio ? exerciseRadio.value : "None";
 
             return {name, dob ,email ,phone ,height, weight, bloodType , bp , temp , medications ,allergies , sleep ,diet , diseases , exercise};
+        }
+
+
+        function insertNewRecord(data : Patient) : void{
+
+            const table = document.getElementById('medical-patientlist') as HTMLTableElement;
+            
+            const tbody = table.getElementsByTagName('tbody')[0] as HTMLTableSectionElement;
+            const newRow = tbody.insertRow(tbody.rows.length);
+
+            newRow.insertCell(0).innerHTML = data.name;
+            newRow.insertCell(1).innerHTML = data.dob;
+            newRow.insertCell(2).innerHTML = data.email;
+            newRow.insertCell(3).innerHTML = data.phone;
+            newRow.insertCell(4).innerHTML = data.height;
+            newRow.insertCell(5).innerHTML = data.weight;
+            newRow.insertCell(6).innerHTML = data.bloodType;
+            newRow.insertCell(7).innerHTML = data.bp;
+            newRow.insertCell(8).innerHTML = data.temp;
+            newRow.insertCell(9).innerHTML = data.diseases;
+            newRow.insertCell(10).innerHTML = data.medications;
+            newRow.insertCell(11).innerHTML = data.allergies;
+            newRow.insertCell(12).innerHTML = data.exercise;
+            newRow.insertCell(13).innerHTML = data.sleep;
+            newRow.insertCell(14).innerHTML = data.diet;
+
+            newRow.insertCell(15).innerHTML = `
+            <button class="edit" onClick="onEdit(this)" style="background-color:#ecc94b; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer; margin-right:5px;">Edit</button>
+            <button class="del" id="deleteRecord" onClick="onDelete(this)" style="background-color:#f56565; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">Delete</button>`;
+
         }
 
     })

@@ -280,3 +280,12 @@ document.addEventListener('DOMContentLoaded',()=>{
     })
 
 })
+
+    function onDelete(td : HTMLElement) {
+        if (confirm('Are you sure you want to delete this record?')) {
+            const row = td.parentElement?.parentElement;
+            if(row) row.remove();
+        }
+    }
+
+    

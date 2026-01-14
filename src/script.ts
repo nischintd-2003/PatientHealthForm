@@ -288,4 +288,96 @@ document.addEventListener('DOMContentLoaded',()=>{
         }
     }
 
+    function onEdit(td : HTMLElement) {
+        
+        selectedRow = td.parentElement?.parentElement as HTMLTableRowElement;
+
+        if(!selectedRow) return;
+
+        if(selectedRow.cells[0]?.innerHTML !== undefined) {
+            (document.getElementById("fullName") as HTMLInputElement).value = selectedRow.cells[0].innerHTML;
+        }
+
+        if(selectedRow.cells[1]?.innerHTML !== undefined){
+            (document.getElementById("dob") as HTMLInputElement).value = selectedRow.cells[1].innerHTML;
+        }
+        
+        if(selectedRow.cells[2]?.innerHTML !== undefined){
+            (document.getElementById("email") as HTMLInputElement).value = selectedRow.cells[2].innerHTML;
+        }        
+        
+        if(selectedRow.cells[3]?.innerHTML !== undefined){   
+            (document.getElementById("phone") as HTMLInputElement).value = selectedRow.cells[3].innerHTML;
+        }
+
+        if(selectedRow.cells[4]?.innerHTML !== undefined){
+            (document.getElementById("height") as HTMLInputElement).value = selectedRow.cells[4].innerHTML;
+        }
+
+        if(selectedRow.cells[5]?.innerHTML !== undefined){
+            
+            (document.getElementById("weight") as HTMLInputElement).value = selectedRow.cells[5].innerHTML;
+        }
+        
+        if(selectedRow.cells[6]?.innerHTML !== undefined){
+            
+            (document.getElementById("bloodType") as HTMLSelectElement).value = selectedRow.cells[6].innerHTML;
+        }        
+ 
+        if(selectedRow.cells[7]?.innerHTML !== undefined){
+            const bpVal = selectedRow.cells[7].innerHTML;
+            (document.getElementById("bp") as HTMLInputElement).value = bpVal === "N/A" ? "" : bpVal;
+        }        
+        
+        if(selectedRow.cells[8]?.innerHTML !== undefined){
+
+            const tempVal = selectedRow.cells[8].innerHTML;
+            (document.getElementById("temp") as HTMLInputElement).value = tempVal === "N/A" ? "" : tempVal;
+        }        
+ 
+        if(selectedRow.cells[9]?.innerHTML !== undefined){
+
+            
+            const diseasesStr = selectedRow.cells[9].innerHTML;
+            const diseaseList = diseasesStr.split(", ");
+            const checkboxes = document.querySelectorAll('input[name="disease"]') as NodeListOf<HTMLInputElement>;
+            checkboxes.forEach(cb => {
+                cb.checked = diseaseList.includes(cb.value);
+            });
+        } 
+        
+        if(selectedRow.cells[10]?.innerHTML !== undefined){
+  
+            const medsVal = selectedRow.cells[10].innerHTML;
+            (document.getElementById("medications") as HTMLTextAreaElement).value = medsVal === "N/A" ? "" : medsVal; 
+        }        
+        
+        if(selectedRow.cells[11]?.innerHTML !== undefined){
+
+            const algVal = selectedRow.cells[11].innerHTML;
+            (document.getElementById("allergies") as HTMLTextAreaElement).value = algVal === "N/A" ? "" : algVal;
+            
+        }      
+        
+        if(selectedRow.cells[12]?.innerHTML !== undefined){
+            
+            const exerciseValue = selectedRow.cells[12].innerHTML;
+            const radio = document.querySelector(`input[name="exercise"][value="${exerciseValue}"]`) as HTMLInputElement;
+            if (radio) radio.checked = true;
+        }
+        
+        if(selectedRow.cells[13]?.innerHTML !== undefined){
+            (document.getElementById("sleep") as HTMLInputElement).value = selectedRow.cells[13].innerHTML;
+        }
+        
+        if(selectedRow.cells[14]?.innerHTML !== undefined){
+            (document.getElementById("diet") as HTMLSelectElement).value = selectedRow.cells[14].innerHTML;
+        }       
+ 
+        
+        const submitBtn = document.querySelector(".btn-submit") as HTMLButtonElement;
+        submitBtn.innerHTML = 'Update Assessment <i class="ri-edit-line"></i>';
+        
+    }    
+
     

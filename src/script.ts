@@ -1,3 +1,23 @@
+interface Patient {
+    name: string;
+    dob: string;
+    email: string;
+    phone: string;
+    height: string;
+    weight: string;
+    bloodType: string;
+    bp: string;
+    temp: string;
+    diseases: string; 
+    medications: string;
+    allergies: string;
+    exercise: string;
+    sleep: string;
+    diet: string;
+}
+
+let selectedRow: HTMLTableRowElement | null = null;
+
 document.addEventListener('DOMContentLoaded',()=>{
 
     const form  = document.getElementById('healthForm') as HTMLFormElement ;
@@ -142,7 +162,12 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 
         if(isValid){
-            alert("Form submitted successfully!");
+            const data = readData();
+            if(selectedRow == null){
+                alert("Form submitted successfully!");
+            }else{
+                alert("Record updated successfully!");
+            }
             clearForm();
         }else{
             
@@ -182,6 +207,43 @@ document.addEventListener('DOMContentLoaded',()=>{
 
             (document.getElementById('privacy') as HTMLInputElement).checked = false ;
 
+        }
+
+        function readData() : Patient{
+            const name  = (document.getElementById('fullName') as HTMLInputElement).value;
+            const dob = (document.getElementById('dob') as HTMLInputElement).value;
+            const email = (document.getElementById('email') as HTMLInputElement).value;
+            const phone = (document.getElementById('phone') as HTMLInputElement).value;
+            const height = (document.getElementById('height') as HTMLInputElement).value;
+            const weight = (document.getElementById('weight') as HTMLInputElement).value;
+            const bloodType = (document.getElementById('bloodType') as HTMLSelectElement).value;
+
+            const bpInput = (document.getElementById('bp') as HTMLInputElement).value;
+            const bp = bpInput ? bpInput : "N/A";
+
+            const tempInput = (document.getElementById('temp') as HTMLInputElement).value;
+            const temp = tempInput ? tempInput : "N/A";
+ 
+            const medsInput = (document.getElementById('medications') as HTMLTextAreaElement).value;
+            const medications = medsInput ? medsInput : "N/A";
+ 
+            const algInput = (document.getElementById('allergies') as HTMLTextAreaElement).value;
+            const allergies = algInput ? algInput : "N/A";
+ 
+            const sleep = (document.getElementById('sleep') as HTMLInputElement).value;
+            const diet = (document.getElementById('diet') as HTMLSelectElement).value;
+
+            const diseaseCheckboxes = form.querySelectorAll('input[name="disease"]:checked') as NodeListOf<HTMLInputElement>;
+            const diseaseArr: string[] = [];
+            diseaseCheckboxes.forEach((checkbox) => {
+                diseaseArr.push(checkbox.value);
+            });
+            const diseases = diseaseArr.join(", ");
+
+            const exerciseRadio = form.querySelector('input[name="exercise"]:checked') as HTMLInputElement;
+            const exercise = exerciseRadio ? exerciseRadio.value : "None";
+
+            return {name, dob ,email ,phone ,height, weight, bloodType , bp , temp , medications ,allergies , sleep ,diet , diseases , exercise};
         }
 
     })

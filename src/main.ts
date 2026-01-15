@@ -272,8 +272,8 @@ document.addEventListener('DOMContentLoaded',()=>{
             newRow.insertCell(14).innerHTML = data.diet;
 
             newRow.insertCell(15).innerHTML = `
-            <button class="edit" onClick="onEdit(this)" style="background-color:#ecc94b; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer; margin-right:5px;">Edit</button>
-            <button class="del" id="deleteRecord" onClick="onDelete(this)" style="background-color:#f56565; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">Delete</button>`;
+            <button class="edit" onClick="window.onEdit(this)" style="background-color:#ecc94b; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer; margin-right:5px;">Edit</button>
+            <button class="del" id="deleteRecord" onClick="window.onDelete(this)" style="background-color:#f56565; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">Delete</button>`;
 
         }
 
@@ -353,21 +353,42 @@ document.addEventListener('DOMContentLoaded',()=>{
             const submitBtn = document.querySelector(".btn-submit") as HTMLButtonElement;
             submitBtn.innerHTML = 'Submit Assessment <i class="ri-send-plane-fill"></i>';
             
-        }        
-
+        }
 
     })
 
-})
+        function setupInputListeners() {
 
-    function onDelete(td : HTMLElement) {
+            const inputs = form.querySelectorAll('input, select, textarea');
+        
+            inputs.forEach(input => {
+                input.addEventListener('input', () => {
+                    const el = input as HTMLInputElement;
+                    if (el.name === "disease") {
+                        clearGroupError('diseaseGroup');
+                    } else if (el.name === "exercise") {
+                        clearGroupError('exerciseGroup');
+                    } else if (el.id === "privacy") {
+                        clearGroupError('privacyGroup');
+                    } else {
+                        clearError(el.id);
+                    }
+                });
+            });
+        }
+
+        setupInputListeners();         
+
+});
+
+    (window as any).onDelete = function (td : HTMLElement) {
         if (confirm('Are you sure you want to delete this record?')) {
             const row = td.parentElement?.parentElement;
             if(row) row.remove();
         }
-    }
+    };
 
-    function onEdit(td : HTMLElement) {
+    (window as any).onEdit = function (td : HTMLElement) {
         
         selectedRow = td.parentElement?.parentElement as HTMLTableRowElement;
 

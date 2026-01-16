@@ -21,3 +21,12 @@ export const setState = (newState: AppState) => {
   state = newState;
   notify();
 };
+
+export const subscribe = (listener: Listener) => {
+  listeners.push(listener);
+};
+
+export const resetState = () => {
+  state = initialState;
+  notify();
+};

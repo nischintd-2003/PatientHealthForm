@@ -16,3 +16,7 @@ export interface Patient {
   sleep: string;
   diet: string;
 }
+
+export interface AppState {
+  patients: Patient[];
+}

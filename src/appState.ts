@@ -4,11 +4,20 @@ const initialState: AppState = {
   patients: [],
 };
 
-const state: AppState = initialState;
+let state: AppState = initialState;
 
 type Listener = () => void;
 const listeners: Listener[] = [];
 
 const notify = () => {
   listeners.forEach((listener) => listener());
+};
+
+export const getState = (): AppState => {
+  return state;
+};
+
+export const setState = (newState: AppState) => {
+  state = newState;
+  notify();
 };

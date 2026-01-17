@@ -5,6 +5,12 @@ export function renderApp() {
     throw new Error('Root element #app not found');
   }
 
+  root.innerHTML = '';
+
   const layout: HTMLDivElement = document.createElement('div');
-  layout.className = 'app';
+  layout.className = 'app-root';
+  layout.textContent = 'Patient Assessment App';
+
+  root.appendChild(layout);
+  return layout;
 }

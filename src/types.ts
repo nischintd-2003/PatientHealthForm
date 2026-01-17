@@ -7,16 +7,12 @@ export interface Patient {
   height: string;
   weight: string;
   bloodType: string;
-  bp: string;
-  temp: string;
+  bloodPressure?: string;
+  bodyTemperature?: string;
   diseases: string[];
-  medications: string;
-  allergies: string;
+  medications?: string;
+  allergies?: string;
   exercise: string;
-  sleep: string;
-  diet: string;
-}
-
-export interface AppState {
-  patients: Patient[];
+  sleepHours?: string;
+  dietType?: string;
 }

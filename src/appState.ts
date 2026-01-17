@@ -29,3 +29,5 @@ export function updatePatient(id: string, updates: Partial<Patient>): void {
     eventBus.publish();
   }
 }
+
+(window as any).addPatient = addPatient;

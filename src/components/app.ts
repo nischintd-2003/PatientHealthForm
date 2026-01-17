@@ -1,14 +1,15 @@
 import { getState } from '../appState';
+import { createElement } from '../utils/dom';
 
 export function App(): HTMLDivElement {
-  const layout = document.createElement('div');
-  layout.className = 'app-root';
+  const root = createElement('div', 'app-root');
 
-  const patients = getState().patients;
+  const title = createElement('h2', '', 'Patient Assessment App');
 
-  layout.innerHTML = `
-  <h2> Patient Assessment App </h2>
-  <p>Patients count: ${patients.length}</p> 
-  `;
-  return layout;
+  const count = createElement('p', '', `Patients count: ${getState().patients.length}`);
+
+  root.appendChild(title);
+  root.appendChild(count);
+
+  return root;
 }

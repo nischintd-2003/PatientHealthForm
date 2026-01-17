@@ -1,15 +1,15 @@
-import { getState } from '../appState';
 import { createElement } from '../utils/dom';
+import { Form } from './form';
+import { Table } from './table';
 
 export function App(): HTMLDivElement {
-  const root = createElement('div', 'app-root');
+  const layout = createElement('div', 'app-layout');
 
-  const title = createElement('h2', '', 'Patient Assessment App');
+  const formSection = Form();
+  const tableSection = Table();
 
-  const count = createElement('p', '', `Patients count: ${getState().patients.length}`);
+  layout.appendChild(formSection);
+  layout.appendChild(tableSection);
 
-  root.appendChild(title);
-  root.appendChild(count);
-
-  return root;
+  return layout;
 }

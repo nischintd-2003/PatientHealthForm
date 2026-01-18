@@ -1,4 +1,5 @@
 import { createElement } from '../utils/dom';
+import { addPatient } from '../appState';
 
 interface LocalFormState {
   fullName: string;
@@ -181,6 +182,16 @@ export function Form(): HTMLElement {
     diseaseContainer.appendChild(label);
   });
 
+  const submitButton = createElement('button', 'btn-submit', 'Submit');
+
+  submitButton.type = 'button';
+
+  submitButton.onclick = () => {
+    handleSubmit();
+  };
+
+  container.appendChild(submitButton);
+
   container.appendChild(title);
   container.appendChild(fullNameInput);
   container.appendChild(dobInput);
@@ -194,6 +205,68 @@ export function Form(): HTMLElement {
   container.appendChild(exerciseContainer);
   container.appendChild(diseaseLabel);
   container.appendChild(diseaseContainer);
+
+  function handleSubmit() {
+    if (!formState.fullName || !formState.dob || !formState.email || !formState.phone) {
+      alert('required fields: Full Name, DOB, Email, Phone');
+      return;
+    }
+
+    const patient = {
+      id: crypto.randomUUID(),
+      fullName: formState.fullName,
+      dob: formState.dob,
+      email: formState.email,
+      phone: formState.phone,
+      height: formState.height,
+      weight: formState.weight,
+      bloodType: formState.bloodType,
+      bloodPressure: '',
+      bodyTemperature: null,
+      chronicDiseases: formState.chronicDiseases,
+      medications: '',
+      allergies: '',
+      exerciseFrequency: formState.exerciseFrequency,
+      sleepHours: null,
+      dietType: formState.dietType,
+    };
+
+    addPatient(patient);
+
+    resetFormUI();
+
+    resetFormState();
+  }
+
+  function resetFormState() {
+    formState.fullName = '';
+    formState.dob = '';
+    formState.email = '';
+    formState.phone = '';
+    formState.height = null;
+    formState.weight = null;
+    formState.bloodType = '';
+    formState.dietType = 'Standard';
+    formState.exerciseFrequency = '';
+    formState.chronicDiseases = [];
+  }
+
+  function resetFormUI() {
+    fullNameInput.value = '';
+    dobInput.value = '';
+    emailInput.value = '';
+    phoneInput.value = '';
+    heightInput.value = '';
+    weightInput.value = '';
+    bloodTypeSelect.value = '';
+    dietSelect.value = 'Standard';
+
+    const radioInputs = exerciseContainer.querySelectorAll("input[type='radio']");
+    radioInputs.forEach((r) => ((r as HTMLInputElement).checked = false));
+
+    const checkboxInputs = diseaseContainer.querySelectorAll("input[type='checkbox']");
+    checkboxInputs.forEach((cb) => ((cb as HTMLInputElement).checked = false));
+  }
 
   return container;
 }

@@ -1,6 +1,7 @@
 import { createElement } from '../utils/dom';
 import type { LocalFormState } from '../types';
 import { personalSection } from './Form/personalSection';
+import { vitalsSection } from './Form/vitalsSection';
 
 export function Form(): HTMLElement {
   const container = createElement('div', 'form-container');
@@ -29,6 +30,7 @@ export function Form(): HTMLElement {
   form.noValidate = true;
 
   form.appendChild(personalSection(state));
+  form.appendChild(vitalsSection(state));
 
   container.appendChild(form);
   return container;

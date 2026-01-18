@@ -3,6 +3,7 @@ import type { LocalFormState } from '../types';
 import { personalSection } from './Form/personalSection';
 import { vitalsSection } from './Form/vitalsSection';
 import { medicalHistorySection } from './Form/medicalHistorySection';
+import { lifestyleSection } from './Form/lifestyleSection';
 
 export function Form(): HTMLElement {
   const container = createElement('div', 'form-container');
@@ -33,6 +34,7 @@ export function Form(): HTMLElement {
   form.appendChild(personalSection(state));
   form.appendChild(vitalsSection(state));
   form.append(medicalHistorySection(state));
+  form.append(lifestyleSection(state));
 
   container.appendChild(form);
   return container;

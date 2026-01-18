@@ -1,57 +1,219 @@
+/* Variables */
+:root {
+  --primary: #319795;
+  --primary-dark: #285e61;
+  --bg-page: #f7fafc;
+  --bg-card: #ffffff;
+  --text-main: #2d3748;
+  --text-muted: #718096;
+  --border: #e2e8f0;
+  --error: #e53e3e;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  line-height: 1.5;
+  padding: 20px;
+}
+
+/* Layout Wrappers */
 .app-layout {
+  max-width: 1400px;
+  margin: 0 auto;
   display: flex;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 30px;
   align-items: flex-start;
 }
 
 .form-container {
   flex: 1;
-  min-width: 300px;
-  background: #fff;
-  padding: 16px;
-  border-radius: 8px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  min-width: 400px;
 }
-
 .table-container {
+  flex: 0 0 600px;
+  background: var(--bg-card);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+/* Form Cards */
+.form-card {
+  background: var(--bg-card);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  margin-bottom: 25px;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid var(--bg-page);
+  padding-bottom: 15px;
+}
+.card-header i {
+  font-size: 1.4rem;
+  color: var(--primary);
+}
+.card-header h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* Grid System */
+.row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+.col {
   flex: 1;
-  min-width: 300px;
+  min-width: 200px;
+}
+.col-third {
+  flex: 1;
+  min-width: 140px;
+}
+
+/* Inputs */
+.form-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #4a5568;
+}
+.required::after {
+  content: ' *';
+  color: var(--error);
+}
+
+input[type='text'],
+input[type='email'],
+input[type='tel'],
+input[type='date'],
+input[type='number'],
+select,
+textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.95rem;
   background: #fff;
-  padding: 16px;
-  border-radius: 8px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: 0.2s;
 }
 
-.form-container input {
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(49, 151, 149, 0.1);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Checkbox & Radio Groups */
+.checkbox-wrapper {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.check-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+input[type='checkbox'],
+input[type='radio'] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+}
+
+.tile-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 10px;
+}
+.tile-option {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  background: #fff;
+}
+.tile-option:hover {
+  border-color: var(--primary);
+}
+.tile-option:has(input:checked) {
+  border-color: var(--primary);
+  background-color: #e6fffa;
+}
+.tile-option input {
+  margin-right: 10px;
+}
+
+/* Buttons */
+.btn-submit {
   display: block;
   width: 100%;
-  margin-bottom: 12px;
-  padding: 8px 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 15px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.btn-submit:hover {
+  background-color: var(--primary-dark);
 }
 
-.form-container h3 {
-  margin-bottom: 12px;
-}
-
-.form-container select {
+/* Error Messages */
+.error-msg {
+  color: var(--error);
+  font-size: 0.8rem;
+  margin-top: 5px;
   display: block;
-  width: 100%;
-  margin-bottom: 12px;
-  padding: 8px 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background-color: white;
+  min-height: 1.2em;
 }
-
-.exercise-group label,
-.disease-group label {
-  display: block;
-  margin-bottom: 6px;
-}
-
-.exercise-group,
-.disease-group {
-  margin-bottom: 12px;
+.form-group.error input,
+.form-group.error select {
+  border-color: var(--error);
 }

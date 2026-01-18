@@ -38,12 +38,18 @@ export function Form(): HTMLElement {
     formState.fullName = (e.target as HTMLInputElement).value;
   };
 
+  const fullNameError = createElement('span', 'error-msg');
+  fullNameError.style.display = 'none';
+
   const dobInput = createElement('input') as HTMLInputElement;
   dobInput.type = 'date';
   dobInput.placeholder = 'Date of Birth';
   dobInput.oninput = (e) => {
     formState.dob = (e.target as HTMLInputElement).value;
   };
+
+  const dobError = createElement('span', 'error-msg');
+  dobError.style.display = 'none';
 
   const emailInput = createElement('input') as HTMLInputElement;
   emailInput.type = 'email';
@@ -52,12 +58,18 @@ export function Form(): HTMLElement {
     formState.email = (e.target as HTMLInputElement).value;
   };
 
+  const emailError = createElement('span', 'error-msg');
+  emailError.style.display = 'none';
+
   const phoneInput = createElement('input') as HTMLInputElement;
   phoneInput.type = 'tel';
   phoneInput.placeholder = 'Phone';
   phoneInput.oninput = (e) => {
     formState.phone = (e.target as HTMLInputElement).value;
   };
+
+  const phoneError = createElement('span', 'error-msg');
+  phoneError.style.display = 'none';
 
   const heightInput = createElement('input') as HTMLInputElement;
   heightInput.type = 'number';
@@ -69,6 +81,9 @@ export function Form(): HTMLElement {
     formState.height = value ? Number(value) : null;
   };
 
+  const heightError = createElement('span', 'error-msg');
+  heightError.style.display = 'none';
+
   const weightInput = createElement('input') as HTMLInputElement;
   weightInput.type = 'number';
   weightInput.placeholder = 'Weight (kg)';
@@ -78,6 +93,9 @@ export function Form(): HTMLElement {
     const value = (e.target as HTMLInputElement).value;
     formState.weight = value ? Number(value) : null;
   };
+
+  const weightError = createElement('span', 'error-msg');
+  weightError.style.display = 'none';
 
   const bloodTypeSelect = createElement('select') as HTMLSelectElement;
   const bloodTypes = ['', 'A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
@@ -93,6 +111,9 @@ export function Form(): HTMLElement {
     formState.bloodType = (e.target as HTMLSelectElement).value;
   };
 
+  const bloodTypeError = createElement('span', 'error-msg');
+  bloodTypeError.style.display = 'none';
+
   const dietSelect = createElement('select') as HTMLSelectElement;
   const dietTypes = ['Standard', 'Vegetarian', 'Vegan', 'Keto'];
 
@@ -106,6 +127,9 @@ export function Form(): HTMLElement {
   dietSelect.onchange = (e) => {
     formState.dietType = (e.target as HTMLSelectElement).value;
   };
+
+  const dietTypeError = createElement('span', 'error-msg');
+  dietTypeError.style.display = 'none';
 
   const exerciseLabel = createElement('p', '', 'Exercise Frequency:');
 
@@ -130,6 +154,9 @@ export function Form(): HTMLElement {
     exerciseContainer.appendChild(label);
   });
 
+  const exerciseError = createElement('span', 'error-msg');
+  exerciseError.style.display = 'none';
+
   const diseaseOptions = ['None', 'Diabetes', 'Hypertension', 'Asthma', 'Other'];
 
   const diseaseLabel = createElement('p', '', 'Chronic Diseases:');
@@ -150,7 +177,7 @@ export function Form(): HTMLElement {
         if (input.checked) {
           formState.chronicDiseases = ['None'];
 
-          const checkboxes = diseaseContainer.querySelectorAll("input[type='checkbox']");
+          const checkboxes = diseaseContainer.querySelectorAll('input[type="checkbox"]');
           checkboxes.forEach((cb) => {
             if ((cb as HTMLInputElement).value !== 'None') {
               (cb as HTMLInputElement).checked = false;
@@ -169,7 +196,7 @@ export function Form(): HTMLElement {
         }
 
         const noneCheckbox = diseaseContainer.querySelector(
-          "input[value='None']",
+          'input[value="None"]',
         ) as HTMLInputElement;
         if (noneCheckbox) {
           noneCheckbox.checked = false;
@@ -181,6 +208,9 @@ export function Form(): HTMLElement {
     label.append(` ${option}`);
     diseaseContainer.appendChild(label);
   });
+
+  const diseaseError = createElement('span', 'error-msg');
+  diseaseError.style.display = 'none';
 
   const submitButton = createElement('button', 'btn-submit', 'Submit');
 
@@ -194,24 +224,29 @@ export function Form(): HTMLElement {
 
   container.appendChild(title);
   container.appendChild(fullNameInput);
+  container.appendChild(fullNameError);
   container.appendChild(dobInput);
+  container.appendChild(dobError);
   container.appendChild(emailInput);
+  container.appendChild(emailError);
   container.appendChild(phoneInput);
+  container.appendChild(phoneError);
   container.appendChild(heightInput);
+  container.appendChild(heightError);
   container.appendChild(weightInput);
+  container.appendChild(weightError);
   container.appendChild(bloodTypeSelect);
+  container.appendChild(bloodTypeError);
   container.appendChild(dietSelect);
+  container.appendChild(dietTypeError);
   container.appendChild(exerciseLabel);
   container.appendChild(exerciseContainer);
+  container.appendChild(exerciseError);
   container.appendChild(diseaseLabel);
   container.appendChild(diseaseContainer);
+  container.appendChild(dietTypeError);
 
   function handleSubmit() {
-    if (!formState.fullName || !formState.dob || !formState.email || !formState.phone) {
-      alert('required fields: Full Name, DOB, Email, Phone');
-      return;
-    }
-
     const patient = {
       id: crypto.randomUUID(),
       fullName: formState.fullName,
@@ -261,10 +296,10 @@ export function Form(): HTMLElement {
     bloodTypeSelect.value = '';
     dietSelect.value = 'Standard';
 
-    const radioInputs = exerciseContainer.querySelectorAll("input[type='radio']");
+    const radioInputs = exerciseContainer.querySelectorAll('input[type="radio"]');
     radioInputs.forEach((r) => ((r as HTMLInputElement).checked = false));
 
-    const checkboxInputs = diseaseContainer.querySelectorAll("input[type='checkbox']");
+    const checkboxInputs = diseaseContainer.querySelectorAll('input[type="checkbox"]');
     checkboxInputs.forEach((cb) => ((cb as HTMLInputElement).checked = false));
   }
 

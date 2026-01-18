@@ -3,15 +3,15 @@ type Callback = () => void;
 class EventBus {
   private subscribers: Callback[] = [];
 
-  subscribe(cb: Callback) {
+  subscribe(cb: Callback): void {
     this.subscribers.push(cb);
   }
 
-  unsubscribe(cb: Callback) {
+  unsubscribe(cb: Callback): void {
     this.subscribers = this.subscribers.filter((fn) => fn !== cb);
   }
 
-  publish() {
+  publish(): void {
     this.subscribers.forEach((cb) => cb());
   }
 }

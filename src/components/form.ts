@@ -5,6 +5,12 @@ interface LocalFormState {
   dob: string;
   email: string;
   phone: string;
+  height: number | null;
+  weight: number | null;
+  bloodType: string;
+  dietType: string;
+  exerciseFrequency: string;
+  chronicDiseases: string[];
 }
 
 export function Form(): HTMLElement {
@@ -16,6 +22,12 @@ export function Form(): HTMLElement {
     dob: '',
     email: '',
     phone: '',
+    height: null,
+    weight: null,
+    bloodType: '',
+    dietType: 'Standard',
+    exerciseFrequency: '',
+    chronicDiseases: [],
   };
 
   const fullNameInput = createElement('input') as HTMLInputElement;
@@ -46,11 +58,142 @@ export function Form(): HTMLElement {
     formState.phone = (e.target as HTMLInputElement).value;
   };
 
+  const heightInput = createElement('input') as HTMLInputElement;
+  heightInput.type = 'number';
+  heightInput.placeholder = 'Height (cm)';
+  heightInput.min = '50';
+  heightInput.max = '250';
+  heightInput.oninput = (e) => {
+    const value = (e.target as HTMLInputElement).value;
+    formState.height = value ? Number(value) : null;
+  };
+
+  const weightInput = createElement('input') as HTMLInputElement;
+  weightInput.type = 'number';
+  weightInput.placeholder = 'Weight (kg)';
+  weightInput.min = '10';
+  weightInput.max = '300';
+  weightInput.oninput = (e) => {
+    const value = (e.target as HTMLInputElement).value;
+    formState.weight = value ? Number(value) : null;
+  };
+
+  const bloodTypeSelect = createElement('select') as HTMLSelectElement;
+  const bloodTypes = ['', 'A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
+
+  bloodTypes.forEach((type) => {
+    const option = createElement('option') as HTMLOptionElement;
+    option.value = type;
+    option.textContent = type === '' ? 'Select Blood Type' : type;
+    bloodTypeSelect.appendChild(option);
+  });
+
+  bloodTypeSelect.onchange = (e) => {
+    formState.bloodType = (e.target as HTMLSelectElement).value;
+  };
+
+  const dietSelect = createElement('select') as HTMLSelectElement;
+  const dietTypes = ['Standard', 'Vegetarian', 'Vegan', 'Keto'];
+
+  dietTypes.forEach((type) => {
+    const option = createElement('option') as HTMLOptionElement;
+    option.value = type;
+    option.textContent = type;
+    dietSelect.appendChild(option);
+  });
+
+  dietSelect.onchange = (e) => {
+    formState.dietType = (e.target as HTMLSelectElement).value;
+  };
+
+  const exerciseLabel = createElement('p', '', 'Exercise Frequency:');
+
+  const exerciseOptions = ['Never', 'Occasionally', 'Regularly', 'Daily'];
+
+  const exerciseContainer = createElement('div', 'exercise-group');
+
+  exerciseOptions.forEach((option) => {
+    const label = createElement('label');
+    const input = createElement('input') as HTMLInputElement;
+
+    input.type = 'radio';
+    input.name = 'exerciseFrequency';
+    input.value = option;
+
+    input.onchange = (e) => {
+      formState.exerciseFrequency = (e.target as HTMLInputElement).value;
+    };
+
+    label.appendChild(input);
+    label.append(` ${option}`);
+    exerciseContainer.appendChild(label);
+  });
+
+  const diseaseOptions = ['None', 'Diabetes', 'Hypertension', 'Asthma', 'Other'];
+
+  const diseaseLabel = createElement('p', '', 'Chronic Diseases:');
+
+  const diseaseContainer = createElement('div', 'disease-group');
+
+  diseaseOptions.forEach((option) => {
+    const label = createElement('label');
+    const input = createElement('input') as HTMLInputElement;
+
+    input.type = 'checkbox';
+    input.value = option;
+
+    input.onchange = () => {
+      const value = input.value;
+
+      if (value === 'None') {
+        if (input.checked) {
+          formState.chronicDiseases = ['None'];
+
+          const checkboxes = diseaseContainer.querySelectorAll("input[type='checkbox']");
+          checkboxes.forEach((cb) => {
+            if ((cb as HTMLInputElement).value !== 'None') {
+              (cb as HTMLInputElement).checked = false;
+            }
+          });
+        } else {
+          formState.chronicDiseases = [];
+        }
+      } else {
+        formState.chronicDiseases = formState.chronicDiseases.filter((d) => d !== 'None');
+
+        if (input.checked) {
+          formState.chronicDiseases.push(value);
+        } else {
+          formState.chronicDiseases = formState.chronicDiseases.filter((d) => d !== value);
+        }
+
+        const noneCheckbox = diseaseContainer.querySelector(
+          "input[value='None']",
+        ) as HTMLInputElement;
+        if (noneCheckbox) {
+          noneCheckbox.checked = false;
+        }
+      }
+    };
+
+    label.appendChild(input);
+    label.append(` ${option}`);
+    diseaseContainer.appendChild(label);
+  });
+
   container.appendChild(title);
   container.appendChild(fullNameInput);
   container.appendChild(dobInput);
   container.appendChild(emailInput);
   container.appendChild(phoneInput);
+  container.appendChild(heightInput);
+  container.appendChild(weightInput);
+  container.appendChild(bloodTypeSelect);
+  container.appendChild(dietSelect);
+  container.appendChild(exerciseLabel);
+  container.appendChild(exerciseContainer);
+  container.appendChild(diseaseLabel);
+  container.appendChild(diseaseContainer);
 
   return container;
 }

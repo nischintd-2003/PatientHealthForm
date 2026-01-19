@@ -8,10 +8,10 @@ export function vitalsSection(state: LocalFormState): HTMLElement {
 
   const row1 = createElement('div', 'row');
   row1.appendChild(
-    createInputGroup('Height (cm)', 'number', 'height', state, '175', true, 'col-third'),
+    createInputGroup('Height (cm)', 'number', 'height', state, '175', true, 'col-third', 150, 250),
   );
   row1.appendChild(
-    createInputGroup('Weight (kg)', 'number', 'weight', state, '70', true, 'col-third'),
+    createInputGroup('Weight (kg)', 'number', 'weight', state, '70', true, 'col-third', 30, 200),
   );
   row1.appendChild(
     createSelectGroup('Blood Type', bloodGroupConst, 'bloodType', state, true, 'col-third'),

@@ -25,7 +25,7 @@ export function medicalHistorySection(state: LocalFormState): HTMLElement {
       input.checked = true;
     }
 
-    input.onchange = () => {
+    input.onchange = (): void => {
       if (disease === 'None' && input.checked) {
         state.chronicDiseases = ['None'];
         checkboxWrapper.querySelectorAll('input').forEach((cb) => {
@@ -63,7 +63,11 @@ export function medicalHistorySection(state: LocalFormState): HTMLElement {
 
   const row2 = createElement('div', 'row');
 
-  const createTextarea = (label: string, key: keyof LocalFormState, placeholder: string) => {
+  const createTextarea = (
+    label: string,
+    key: keyof LocalFormState,
+    placeholder: string,
+  ): HTMLDivElement => {
     const wrapper = createElement('div', 'form-group col');
     const lbl = createElement('label', '', label);
     const txt = createElement('textarea');
@@ -73,7 +77,7 @@ export function medicalHistorySection(state: LocalFormState): HTMLElement {
       txt.value = String(state[key]);
     }
 
-    txt.oninput = (e) => ((state as any)[key] = (e.target as HTMLTextAreaElement).value);
+    txt.oninput = (e): string => ((state as any)[key] = (e.target as HTMLTextAreaElement).value);
     wrapper.appendChild(lbl);
     wrapper.appendChild(txt);
     return wrapper;

@@ -63,7 +63,7 @@
   --transition-base: 0.2s ease;
   --transition-slow: 0.3s ease;
 }
-
+/* Dark Theme */
 [data-theme='dark'] {
   --primary: #4fd1c5;
   --primary-dark: #319795;
@@ -74,6 +74,8 @@
   --border: #4a5568;
   --input-bg: #2d3748;
 }
+
+/* HTML & Body */
 
 html {
   font-size: 16px;
@@ -87,6 +89,8 @@ body {
   line-height: var(--line-height-normal);
   padding: var(--space-2);
 }
+
+/* Theme toggle row  */
 
 .theme-toggle-row {
   width: 100%;
@@ -108,6 +112,8 @@ body {
 .theme-toggle:hover {
   background-color: var(--border);
 }
+
+/* Page header */
 
 .page-header {
   text-align: center;
@@ -151,6 +157,8 @@ body {
   min-width: 400px;
 }
 
+/* Table */
+
 .display-patient-table {
   flex: 0 0 600px;
   margin: 0;
@@ -184,33 +192,14 @@ body {
   top: 0;
 }
 
-.empty-cell {
+.patient-table .empty-cell {
   padding: var(--space-2);
   color: var(--text-muted);
 }
 
-.edit-btn {
-  background-color: #ecc94b;
-  color: white;
-  border: none;
-  padding: var(--space-1) var(--space-1);
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  margin-right: var(--space-1);
-}
-
-.del-btn {
-  background-color: #f56565;
-  color: white;
-  border: none;
-  padding: var(--space-1) var(--space-1);
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-}
-
 /* Form Cards */
 
-.form-card {
+#healthForm .form-card {
   background: var(--bg-card);
   padding: var(--space-4);
   border-radius: var(--radius-xl);
@@ -219,7 +208,7 @@ body {
   border: 1px solid rgba(0, 0, 0, 0.03);
 }
 
-.card-header {
+#healthForm .card-header {
   display: flex;
   align-items: center;
   gap: var(--space-1);
@@ -228,12 +217,12 @@ body {
   padding-bottom: var(--space-2);
 }
 
-.card-header i {
+#healthForm .card-header i {
   font-size: 1.4rem;
   color: var(--primary);
 }
 
-.card-header h3 {
+#healthForm .card-header h3 {
   font-size: 1.1rem;
   font-weight: var(--font-weight-semibold);
 }
@@ -256,7 +245,7 @@ body {
   min-width: 150px;
 }
 
-/* Inputs */
+/* Form Inputs & Label */
 #healthForm .form-group {
   margin-bottom: var(--space-2);
   position: relative;
@@ -310,7 +299,7 @@ textarea {
   min-height: 80px;
 }
 
-/* Checkbox & Radio Groups */
+/*  Form Checkbox & Radio Groups */
 
 #healthForm .checkbox-wrapper {
   display: flex;
@@ -366,7 +355,7 @@ textarea {
 }
 
 /* Buttons */
-.btn-submit {
+#healthForm .btn-submit {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -383,8 +372,27 @@ textarea {
   cursor: pointer;
   font-size: 1rem;
 }
-.btn-submit:hover {
+#healthForm .btn-submit:hover {
   background-color: var(--primary-dark);
+}
+
+.patient-table .edit-btn {
+  background-color: #ecc94b;
+  color: white;
+  border: none;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  margin-right: var(--space-1);
+}
+
+.patient-table .del-btn {
+  background-color: #f56565;
+  color: white;
+  border: none;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
 }
 
 /* Error Messages */
@@ -400,6 +408,7 @@ textarea {
   border-color: var(--error);
 }
 
+/* Form Footer */
 .footer-actions .form-group {
   text-align: center;
   margin-bottom: var(--space-2);
@@ -413,6 +422,8 @@ textarea {
   font-size: 0.9rem;
   color: #666;
 }
+
+/* Responsive */
 
 @media (max-width: 1050px) {
   .display-patient-table {

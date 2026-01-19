@@ -38,10 +38,11 @@ export function tableBody(): HTMLElement {
     state.patients.forEach((p) => {
       const row = createElement('tr');
 
-      const createCell = (text: string) => createElement('td', '', text);
+      const createCell = (text: string): HTMLTableCellElement => createElement('td', '', text);
 
-      const format = (val: any, suffix = '') =>
-        val !== null && val !== '' && val !== undefined ? `${val}${suffix}` : 'N/A';
+      const format = (val: any, suffix = ''): string => {
+        return val !== null && val !== '' && val !== undefined ? `${val}${suffix}` : 'N/A';
+      };
 
       const diseaseText = p.chronicDiseases?.length ? p.chronicDiseases.join(', ') : 'None';
 
@@ -70,12 +71,12 @@ export function tableBody(): HTMLElement {
         editBtn.style.opacity = '0.5';
       }
 
-      editBtn.onclick = () => {
+      editBtn.onclick = (): void => {
         setEditingId(p.id);
       };
 
       const deleteBtn = createElement('button', 'del-btn', 'Delete');
-      deleteBtn.onclick = () => {
+      deleteBtn.onclick = (): void => {
         if (confirm(`Are you sure you want to delete ${p.fullName}?`)) {
           deletePatient(p.id);
         }

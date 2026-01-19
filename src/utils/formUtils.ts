@@ -22,6 +22,8 @@ export const createInputGroup = (
   placeholder: string = '',
   isRequired: boolean = false,
   colClass: string = 'col',
+  min?: number,
+  max?: number,
 ): HTMLElement => {
   const wrapper = createElement('div', `form-group ${colClass}`);
 
@@ -33,11 +35,18 @@ export const createInputGroup = (
   input.id = key;
   input.placeholder = placeholder;
 
+  if (min !== undefined) {
+    input.min = String(min);
+  }
+  if (max !== undefined) {
+    input.max = String(max);
+  }
+
   if (state[key] !== null && state[key] !== undefined) {
     input.value = String(state[key]);
   }
 
-  input.oninput = (e) => {
+  input.oninput = (e): void => {
     const val = (e.target as HTMLInputElement).value;
     if (type === 'number') {
       (state as any)[key] = val ? parseFloat(val) : null;
@@ -86,7 +95,7 @@ export const createSelectGroup = (
     select.appendChild(option);
   });
 
-  select.onchange = (e) => {
+  select.onchange = (e): void => {
     (state as any)[key] = (e.target as HTMLSelectElement).value;
     wrapper.classList.remove('error');
     const err = wrapper.querySelector('.error-msg');

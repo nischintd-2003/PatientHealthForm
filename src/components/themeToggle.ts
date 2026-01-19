@@ -6,7 +6,7 @@ export function themeToggle(): HTMLDivElement {
   const savedTheme = localStorage.getItem('theme') || 'light';
   document.body.setAttribute('data-theme', savedTheme);
   themeBtn.innerHTML = savedTheme === 'dark' ? '☀️' : '🌙';
-  themeBtn.onclick = () => {
+  themeBtn.onclick = (): void => {
     const current = document.body.getAttribute('data-theme');
     const next = current === 'dark' ? 'light' : 'dark';
 

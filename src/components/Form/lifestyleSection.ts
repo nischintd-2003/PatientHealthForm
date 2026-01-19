@@ -25,7 +25,7 @@ export function lifestyleSection(state: LocalFormState): HTMLElement {
       input.checked = true;
     }
 
-    input.onchange = () => {
+    input.onchange = (): void => {
       state.exerciseFrequency = opt;
       exGroup.classList.remove('error');
       exGroup.querySelector('.error-msg')!.textContent = '';
@@ -43,7 +43,9 @@ export function lifestyleSection(state: LocalFormState): HTMLElement {
   row.appendChild(exGroup);
 
   const colRight = createElement('div', 'col');
-  colRight.appendChild(createInputGroup('Sleep Hours/Night', 'number', 'sleepHours', state, '7'));
+  colRight.appendChild(
+    createInputGroup('Sleep Hours/Night', 'number', 'sleepHours', state, '7', false, 'col', 0, 24),
+  );
   colRight.appendChild(createSelectGroup('Diet Type', dietType, 'dietType', state));
   row.appendChild(colRight);
 

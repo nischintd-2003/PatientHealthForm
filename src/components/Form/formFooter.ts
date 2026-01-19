@@ -22,7 +22,7 @@ export function formFooter(
     privacyGroup.appendChild(privacyLabel);
     privacyGroup.appendChild(createElement('small', 'error-msg'));
 
-    privacyInput.onchange = (e) => {
+    privacyInput.onchange = (e): void => {
       state.privacyPolicy = (e.target as HTMLInputElement).checked;
       privacyGroup.classList.remove('error');
       privacyGroup.querySelector('.error-msg')!.textContent = '';
@@ -51,7 +51,7 @@ export function submitButton(
   submitBtn.appendChild(submitContent);
   submitBtn.appendChild(submitIcon);
   submitBtn.type = 'button';
-  submitBtn.onclick = () => {
+  submitBtn.onclick = (): void => {
     handleFormSubmission(container, state, editingPatient);
   };
   return submitBtn;

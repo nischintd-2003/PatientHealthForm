@@ -3,14 +3,26 @@ import type { Patient } from './types';
 
 interface AppState {
   patients: Patient[];
+  editingId: string | null;
 }
 
 const state: AppState = {
   patients: [],
+  editingId: null,
 };
 
 export function getState(): AppState {
   return { ...state };
+}
+
+export function setEditingId(id: string | null): void {
+  state.editingId = id;
+  eventBus.publish();
+}
+
+export function stopEditingPatient() {
+  state.editingId = null;
+  eventBus.publish();
 }
 
 export function addPatient(patient: Patient): void {

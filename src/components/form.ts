@@ -9,7 +9,7 @@ import { validatePatient } from '../validationService';
 import { addPatient, getState, updatePatient } from '../appState';
 
 export function Form(): HTMLElement {
-  const container = createElement('div', 'form-container');
+  const container = createElement('div', 'health-form-container');
 
   const globalState = getState();
   const editingPatient = globalState.editingId

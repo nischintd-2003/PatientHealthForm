@@ -1,4 +1,4 @@
-import { renderApp } from './renderer';
+import { renderApp } from './components/app';
 
 document.addEventListener('DOMContentLoaded', () => {
   renderApp();

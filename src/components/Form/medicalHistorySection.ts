@@ -7,7 +7,11 @@ export function medicalHistorySection(state: LocalFormState): HTMLElement {
 
   const diseaseGroup = createElement('div', 'form-group');
   diseaseGroup.id = 'chronicDiseases';
-  diseaseGroup.innerHTML = '<label class="required">Chronic Diseases (Select at least 1)</label>';
+  const diseaseGroupLabel = createElement(
+    'label',
+    'required',
+    'Chronic Diseases (Select at least 1)',
+  );
 
   const checkboxWrapper = createElement('div', 'checkbox-wrapper');
   ['None', 'Diabetes', 'Hypertension', 'Asthma', 'Other'].forEach((disease) => {
@@ -51,6 +55,8 @@ export function medicalHistorySection(state: LocalFormState): HTMLElement {
   });
 
   const diseaseError = createElement('small', 'error-msg');
+
+  diseaseGroup.appendChild(diseaseGroupLabel);
   diseaseGroup.appendChild(checkboxWrapper);
   diseaseGroup.appendChild(diseaseError);
 

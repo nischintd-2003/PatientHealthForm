@@ -8,7 +8,7 @@ export function lifestyleSection(state: LocalFormState): HTMLElement {
 
   const exGroup = createElement('div', 'form-group col');
   exGroup.id = 'exerciseFrequency';
-  exGroup.innerHTML = '<label class="required">Exercise Frequency</label>';
+  const exGroupLabel = createElement('label', 'required', 'Exercise Frequency');
   const tileGroup = createElement('div', 'tile-group');
 
   const exError = createElement('small', 'error-msg');
@@ -36,6 +36,7 @@ export function lifestyleSection(state: LocalFormState): HTMLElement {
     tileGroup.appendChild(label);
   });
 
+  exGroup.appendChild(exGroupLabel);
   exGroup.appendChild(tileGroup);
   exGroup.appendChild(exError);
   row.appendChild(exGroup);

@@ -1,13 +1,13 @@
-import { createElement } from '../utils/dom';
-import type { LocalFormState } from '../interface/formStateType';
-import { personalSection } from './Form/personalSection';
-import { vitalsSection } from './Form/vitalsSection';
-import { medicalHistorySection } from './Form/medicalHistorySection';
-import { lifestyleSection } from './Form/lifestyleSection';
-import type { Patient } from '../interface/patientType';
-import { validatePatient } from '../validationService';
-import { addPatient, updatePatient } from '../appLogic';
-import { getState } from '../appState';
+import { createElement } from '../../utils/dom';
+import type { LocalFormState } from '../../interface/formStateType';
+import { personalSection } from './personalSection';
+import { vitalsSection } from './vitalsSection';
+import { medicalHistorySection } from './medicalHistorySection';
+import { lifestyleSection } from './lifestyleSection';
+import type { Patient } from '../../interface/patientType';
+import { validatePatient } from '../../validationService';
+import { addPatient, updatePatient } from '../../appLogic';
+import { getState } from '../../appState';
 
 export function Form(): HTMLElement {
   const container = createElement('div', 'health-form-container');

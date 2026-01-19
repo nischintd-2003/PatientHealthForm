@@ -1,7 +1,7 @@
 import { createElement } from '../../utils/dom';
 import type { LocalFormState } from '../../interface/formStateType';
 import { createCard, createSelectGroup, createInputGroup } from '../../utils/formUtils';
-import { exerciseFrequencyConst } from '../../constants';
+import { dietType, exerciseFrequencyConst } from '../../constants';
 
 export function lifestyleSection(state: LocalFormState): HTMLElement {
   const card = createCard('Lifestyle', 'ri-run-line');
@@ -44,9 +44,7 @@ export function lifestyleSection(state: LocalFormState): HTMLElement {
 
   const colRight = createElement('div', 'col');
   colRight.appendChild(createInputGroup('Sleep Hours/Night', 'number', 'sleepHours', state, '7'));
-  colRight.appendChild(
-    createSelectGroup('Diet Type', ['Standard', 'Vegetarian', 'Vegan', 'Keto'], 'dietType', state),
-  );
+  colRight.appendChild(createSelectGroup('Diet Type', dietType, 'dietType', state));
   row.appendChild(colRight);
 
   card.appendChild(row);

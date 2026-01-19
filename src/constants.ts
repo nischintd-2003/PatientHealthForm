@@ -19,3 +19,4 @@ export const tableHeadersConst = [
   'Actions',
 ];
 export const bloodGroupConst = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
+export const dietType = ['Standard', 'Vegetarian', 'Vegan', 'Keto'];

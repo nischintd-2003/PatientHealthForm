@@ -1,5 +1,6 @@
 import { createElement } from '../utils/dom';
-import { getState, deletePatient, setEditingId } from '../appState';
+import { deletePatient, setEditingId } from '../appLogic';
+import { getState } from '../appState';
 
 export function Table(): HTMLElement {
   const container = createElement('div', 'display-patient-table');

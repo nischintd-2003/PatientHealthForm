@@ -6,7 +6,8 @@ import { medicalHistorySection } from './Form/medicalHistorySection';
 import { lifestyleSection } from './Form/lifestyleSection';
 import type { Patient } from '../interface/patientType';
 import { validatePatient } from '../validationService';
-import { addPatient, getState, updatePatient } from '../appState';
+import { addPatient, updatePatient } from '../appLogic';
+import { getState } from '../appState';
 
 export function Form(): HTMLElement {
   const container = createElement('div', 'health-form-container');

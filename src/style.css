@@ -413,3 +413,10 @@ textarea {
   font-size: 0.9rem;
   color: #666;
 }
+
+@media (max-width: 1050px) {
+  .display-patient-table {
+    flex: 1 1 100%;
+    min-width: 100%;
+  }
+}

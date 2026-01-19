@@ -6,7 +6,7 @@ import { medicalHistorySection } from './medicalHistorySection';
 import { lifestyleSection } from './lifestyleSection';
 import type { Patient } from '../../interface/patientType';
 import { validatePatient } from '../../validationService';
-import { addPatient, updatePatient } from '../../appLogic';
+import { addPatient, updatePatient, showErrors, clearErrors } from '../../appLogic';
 import { getState } from '../../appState';
 
 export function Form(): HTMLElement {
@@ -94,7 +94,7 @@ export function Form(): HTMLElement {
   container.appendChild(form);
 
   function handleSubmission() {
-    clearErrors();
+    clearErrors(container);
 
     const patientData: Patient = {
       id: crypto.randomUUID(),
@@ -123,7 +123,7 @@ export function Form(): HTMLElement {
     }
 
     if (!validation.isValid) {
-      showErrors(validation.errors);
+      showErrors(validation.errors, container);
       return;
     }
 
@@ -134,33 +134,6 @@ export function Form(): HTMLElement {
       addPatient(patientData);
       alert('Patient added!');
     }
-  }
-
-  function showErrors(errors: Record<string, string>): void {
-    Object.entries(errors).forEach(([key, msg]) => {
-      const input = container.querySelector(`#${key}`);
-
-      if (input) {
-        const group = input.closest('.form-group');
-        if (group) {
-          group.classList.add('error');
-          const errorSpan = group.querySelector('.error-msg');
-          if (errorSpan) {
-            errorSpan.textContent = msg;
-          }
-        }
-      }
-    });
-
-    const firstError = container.querySelector('.error');
-    if (firstError) {
-      firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  }
-
-  function clearErrors(): void {
-    container.querySelectorAll('.form-group.error').forEach((el) => el.classList.remove('error'));
-    container.querySelectorAll('.error-msg').forEach((el) => (el.textContent = ''));
   }
 
   return container;

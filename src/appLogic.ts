@@ -40,3 +40,30 @@ export function updatePatient(id: string, updates: Partial<Patient>): void {
 
   savePatients(newPatients);
 }
+
+export function showErrors(errors: Record<string, string>, container: HTMLElement): void {
+  Object.entries(errors).forEach(([key, msg]) => {
+    const input = container.querySelector(`#${key}`);
+
+    if (input) {
+      const group = input.closest('.form-group');
+      if (group) {
+        group.classList.add('error');
+        const errorSpan = group.querySelector('.error-msg');
+        if (errorSpan) {
+          errorSpan.textContent = msg;
+        }
+      }
+    }
+  });
+
+  const firstError = container.querySelector('.error');
+  if (firstError) {
+    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
+export function clearErrors(container: HTMLElement): void {
+  container.querySelectorAll('.form-group.error').forEach((el) => el.classList.remove('error'));
+  container.querySelectorAll('.error-msg').forEach((el) => (el.textContent = ''));
+}

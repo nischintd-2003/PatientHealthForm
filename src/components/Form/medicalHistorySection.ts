@@ -41,6 +41,8 @@ export function medicalHistorySection(state: LocalFormState): HTMLElement {
           state.chronicDiseases = state.chronicDiseases.filter((d) => d !== disease);
         }
       }
+      diseaseGroup.classList.remove('error');
+      diseaseGroup.querySelector('.error-msg')!.textContent = '';
     };
 
     label.appendChild(input);

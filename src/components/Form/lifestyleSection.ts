@@ -11,6 +11,8 @@ export function lifestyleSection(state: LocalFormState): HTMLElement {
   exGroup.innerHTML = '<label class="required">Exercise Frequency</label>';
   const tileGroup = createElement('div', 'tile-group');
 
+  const exError = createElement('small', 'error-msg');
+
   ['Never', 'Occasionally', 'Regularly', 'Daily'].forEach((opt) => {
     const label = createElement('label', 'tile-option');
     const input = createElement('input');
@@ -22,7 +24,11 @@ export function lifestyleSection(state: LocalFormState): HTMLElement {
       input.checked = true;
     }
 
-    input.onchange = () => (state.exerciseFrequency = opt);
+    input.onchange = () => {
+      state.exerciseFrequency = opt;
+      exGroup.classList.remove('error');
+      exGroup.querySelector('.error-msg')!.textContent = '';
+    };
 
     const span = createElement('span', '', opt);
     label.appendChild(input);
@@ -30,7 +36,6 @@ export function lifestyleSection(state: LocalFormState): HTMLElement {
     tileGroup.appendChild(label);
   });
 
-  const exError = createElement('small', 'error-msg');
   exGroup.appendChild(tileGroup);
   exGroup.appendChild(exError);
   row.appendChild(exGroup);

@@ -44,6 +44,11 @@ export const createInputGroup = (
     } else {
       (state as any)[key] = val;
     }
+    wrapper.classList.remove('error');
+    const err = wrapper.querySelector('.error-msg');
+    if (err) {
+      err.textContent = '';
+    }
   };
 
   const error = createElement('small', 'error-msg');
@@ -83,6 +88,11 @@ export const createSelectGroup = (
 
   select.onchange = (e) => {
     (state as any)[key] = (e.target as HTMLSelectElement).value;
+    wrapper.classList.remove('error');
+    const err = wrapper.querySelector('.error-msg');
+    if (err) {
+      err.textContent = '';
+    }
   };
 
   const error = createElement('small', 'error-msg');

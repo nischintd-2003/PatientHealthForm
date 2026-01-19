@@ -34,6 +34,16 @@ function getRequiredFieldErrors(p: Patient): Record<string, string> {
     errors.phone = 'Phone is required';
   }
 
+  if (!p.height) {
+    errors.height = 'Height is required';
+  }
+  if (!p.weight) {
+    errors.weight = 'Weight is required';
+  }
+  if (!p.bloodType) {
+    errors.bloodType = 'Blood Type is required';
+  }
+
   if (!p.exerciseFrequency) {
     errors.exerciseFrequency = 'Please select an option';
   }

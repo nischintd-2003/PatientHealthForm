@@ -7,6 +7,7 @@ export function lifestyleSection(state: LocalFormState): HTMLElement {
   const row = createElement('div', 'row');
 
   const exGroup = createElement('div', 'form-group col');
+  exGroup.id = 'exerciseFrequency';
   exGroup.innerHTML = '<label class="required">Exercise Frequency</label>';
   const tileGroup = createElement('div', 'tile-group');
 

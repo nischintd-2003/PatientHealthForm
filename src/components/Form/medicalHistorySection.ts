@@ -6,6 +6,7 @@ export function medicalHistorySection(state: LocalFormState): HTMLElement {
   const card = createCard('Medical History', 'ri-health-book-line');
 
   const diseaseGroup = createElement('div', 'form-group');
+  diseaseGroup.id = 'chronicDiseases';
   diseaseGroup.innerHTML = '<label class="required">Chronic Diseases (Select at least 1)</label>';
 
   const checkboxWrapper = createElement('div', 'checkbox-wrapper');

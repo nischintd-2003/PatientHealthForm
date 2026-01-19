@@ -66,16 +66,19 @@ export function Form(): HTMLElement {
   const footer = createElement('div', 'footer-actions');
   const privacyGroup = createElement('div', 'form-group');
 
-  const privacyLabel = createElement('label', 'check-box required');
-  const privacyInput = createElement('input');
-  privacyInput.type = 'checkbox';
-  privacyInput.id = 'privacyPolicy';
-  privacyInput.onchange = (e) => (state.privacyPolicy = (e.target as HTMLInputElement).checked);
+  if (!editingPatient) {
+    const privacyLabel = createElement('label', 'check-box required');
+    const privacyInput = createElement('input');
+    privacyInput.type = 'checkbox';
+    privacyInput.id = 'privacyPolicy';
+    privacyInput.onchange = (e) => (state.privacyPolicy = (e.target as HTMLInputElement).checked);
 
-  privacyLabel.appendChild(privacyInput);
-  privacyLabel.append(' I agree to the privacy policy.');
-  privacyGroup.appendChild(privacyLabel);
-  privacyGroup.appendChild(createElement('small', 'error-msg'));
+    privacyLabel.appendChild(privacyInput);
+    privacyLabel.append(' I agree to the privacy policy.');
+    privacyGroup.appendChild(privacyLabel);
+    privacyGroup.appendChild(createElement('small', 'error-msg'));
+    footer.appendChild(privacyGroup);
+  }
 
   const submitBtn = createElement('button', 'btn-submit');
   submitBtn.innerHTML = editingPatient
@@ -84,7 +87,6 @@ export function Form(): HTMLElement {
   submitBtn.type = 'button';
   submitBtn.onclick = handleSubmission;
 
-  footer.appendChild(privacyGroup);
   footer.appendChild(submitBtn);
   form.appendChild(footer);
 

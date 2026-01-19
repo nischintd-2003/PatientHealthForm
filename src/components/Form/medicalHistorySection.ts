@@ -16,6 +16,10 @@ export function medicalHistorySection(state: LocalFormState): HTMLElement {
     input.type = 'checkbox';
     input.value = disease;
 
+    if (state.chronicDiseases.includes(disease)) {
+      input.checked = true;
+    }
+
     input.onchange = () => {
       if (disease === 'None' && input.checked) {
         state.chronicDiseases = ['None'];
@@ -55,6 +59,11 @@ export function medicalHistorySection(state: LocalFormState): HTMLElement {
     const lbl = createElement('label', '', label);
     const txt = createElement('textarea');
     txt.placeholder = placeholder;
+
+    if (state[key]) {
+      txt.value = String(state[key]);
+    }
+
     txt.oninput = (e) => ((state as any)[key] = (e.target as HTMLTextAreaElement).value);
     wrapper.appendChild(lbl);
     wrapper.appendChild(txt);

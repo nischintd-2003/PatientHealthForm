@@ -18,6 +18,10 @@ export function lifestyleSection(state: LocalFormState): HTMLElement {
     input.name = 'exercise';
     input.value = opt;
 
+    if (state.exerciseFrequency === opt) {
+      input.checked = true;
+    }
+
     input.onchange = () => (state.exerciseFrequency = opt);
 
     const span = createElement('span', '', opt);

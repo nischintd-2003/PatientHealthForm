@@ -6,7 +6,7 @@ export const createCard = (title: string, iconClass: string): HTMLElement => {
   const header = createElement('div', 'card-header');
 
   const icon = createElement('i', iconClass);
-  const titleEl = createElement('h3', '', title);
+  const titleEl = createElement('h2', '', title);
 
   header.appendChild(icon);
   header.appendChild(titleEl);
@@ -78,6 +78,8 @@ export const createSelectGroup = (
 ): HTMLElement => {
   const wrapper = createElement('div', `form-group ${colClass}`);
   const lbl = createElement('label', isRequired ? 'required' : '', label);
+
+  lbl.setAttribute('for', key);
 
   const select = createElement('select') as HTMLSelectElement;
   select.id = key;

@@ -1,6 +1,8 @@
 import { getState, setState } from './appState';
 import { savePatients } from './appStorage';
 import type { Patient } from './interface/patientType';
+import type { LocalFormState } from './interface/formStateType';
+import { validatePatient } from './validationService';
 
 export function setEditingId(id: string | null): void {
   setState({ editingId: id });
@@ -66,4 +68,51 @@ export function showErrors(errors: Record<string, string>, container: HTMLElemen
 export function clearErrors(container: HTMLElement): void {
   container.querySelectorAll('.form-group.error').forEach((el) => el.classList.remove('error'));
   container.querySelectorAll('.error-msg').forEach((el) => (el.textContent = ''));
+}
+
+export function handleFormSubmission(
+  container: HTMLElement,
+  state: LocalFormState,
+  editingPatient: Patient | null | undefined,
+): void {
+  clearErrors(container);
+
+  const patientData: Patient = {
+    id: editingPatient ? editingPatient.id : crypto.randomUUID(),
+    fullName: state.fullName,
+    dob: state.dob,
+    email: state.email,
+    phone: state.phone,
+    height: state.height,
+    weight: state.weight,
+    bloodType: state.bloodType,
+    bloodPressure: state.bloodPressure,
+    bodyTemperature: state.bodyTemperature,
+    medications: state.medications,
+    allergies: state.allergies,
+    dietType: state.dietType,
+    sleepHours: state.sleepHours,
+    exerciseFrequency: state.exerciseFrequency,
+    chronicDiseases: state.chronicDiseases,
+  };
+
+  const validation = validatePatient(patientData);
+
+  if (!editingPatient && !state.privacyPolicy) {
+    validation.isValid = false;
+    validation.errors['privacyPolicy'] = 'You must agree to the privacy policy.';
+  }
+
+  if (!validation.isValid) {
+    showErrors(validation.errors, container);
+    return;
+  }
+
+  if (editingPatient) {
+    updatePatient(editingPatient.id, patientData);
+    alert('Patient updated!');
+  } else {
+    addPatient(patientData);
+    alert('Patient added!');
+  }
 }

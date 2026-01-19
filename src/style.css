@@ -133,6 +133,31 @@ body {
   top: 0;
 }
 
+.empty-cell {
+  text-align: center;
+  padding: 20px;
+  color: var(--text-muted);
+}
+
+.edit-btn {
+  background-color: #ecc94b;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.del-btn {
+  background-color: #f56565;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 /* Form Cards */
 
 .form-card {

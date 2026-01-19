@@ -1,49 +1,35 @@
 import { createElement } from '../utils/dom';
 import { deletePatient, setEditingId } from '../appLogic';
 import { getState } from '../appState';
+import { tableHeadersConst } from '../constants';
 
 export function Table(): HTMLElement {
   const container = createElement('div', 'display-patient-table');
-  const state = getState();
+
   const table = createElement('table', 'patient-table');
 
   const thead = createElement('thead');
   const headerRow = createElement('tr');
-  const headers = [
-    'Name',
-    'DOB',
-    'Email',
-    'Phone',
-    'Height',
-    'Weight',
-    'Blood',
-    'BP',
-    'Temp',
-    'Diseases',
-    'Meds',
-    'Allergies',
-    'Exercise',
-    'Sleep',
-    'Diet',
-    'Actions',
-  ];
 
-  headers.forEach((text) => {
+  tableHeadersConst.forEach((text) => {
     const th = createElement('th', '', text);
     headerRow.appendChild(th);
   });
   thead.appendChild(headerRow);
   table.appendChild(thead);
 
-  const tbody = createElement('tbody');
+  table.appendChild(tableBody());
+  container.appendChild(table);
+  return container;
+}
 
+export function tableBody(): HTMLElement {
+  const state = getState();
+  const tbody = createElement('tbody');
   if (state.patients.length === 0) {
     const emptyRow = createElement('tr');
-    const emptyCell = createElement('td', '', 'No records found.');
+    const emptyCell = createElement('td', 'empty-cell', 'No records found.');
     emptyCell.setAttribute('colspan', '16');
-    emptyCell.style.textAlign = 'center';
-    emptyCell.style.padding = '20px';
-    emptyCell.style.color = '#718096';
     emptyRow.appendChild(emptyCell);
     tbody.appendChild(emptyRow);
   } else {
@@ -75,9 +61,7 @@ export function Table(): HTMLElement {
 
       const actionCell = createElement('td');
 
-      const editBtn = createElement('button', 'edit', 'Edit');
-      editBtn.style.cssText =
-        'background-color:#ecc94b; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer; margin-right:5px;';
+      const editBtn = createElement('button', 'edit-btn', 'Edit');
 
       if (state.editingId === p.id) {
         editBtn.disabled = true;
@@ -88,9 +72,7 @@ export function Table(): HTMLElement {
         setEditingId(p.id);
       };
 
-      const deleteBtn = createElement('button', 'del', 'Delete');
-      deleteBtn.style.cssText =
-        'background-color:#f56565; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;';
+      const deleteBtn = createElement('button', 'del-btn', 'Delete');
       deleteBtn.onclick = () => {
         if (confirm(`Are you sure you want to delete ${p.fullName}?`)) {
           deletePatient(p.id);
@@ -103,8 +85,5 @@ export function Table(): HTMLElement {
       tbody.appendChild(row);
     });
   }
-
-  table.appendChild(tbody);
-  container.appendChild(table);
-  return container;
+  return tbody;
 }

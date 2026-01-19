@@ -1,6 +1,7 @@
 import { createElement } from '../../utils/dom';
 import type { LocalFormState } from '../../interface/formStateType';
 import { createCard, createInputGroup, createSelectGroup } from '../../utils/formUtils';
+import { bloodGroupConst } from '../../constants';
 
 export function vitalsSection(state: LocalFormState): HTMLElement {
   const card = createCard('Vital Stats', 'ri-computer-line');
@@ -13,14 +14,7 @@ export function vitalsSection(state: LocalFormState): HTMLElement {
     createInputGroup('Weight (kg)', 'number', 'weight', state, '70', true, 'col-third'),
   );
   row1.appendChild(
-    createSelectGroup(
-      'Blood Type',
-      ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'],
-      'bloodType',
-      state,
-      true,
-      'col-third',
-    ),
+    createSelectGroup('Blood Type', bloodGroupConst, 'bloodType', state, true, 'col-third'),
   );
 
   const row2 = createElement('div', 'row');

@@ -1,6 +1,7 @@
 import { createElement } from '../../utils/dom';
 import type { LocalFormState } from '../../interface/formStateType';
 import { createCard } from '../../utils/formUtils';
+import { chronicDiseasesConst } from '../../constants';
 
 export function medicalHistorySection(state: LocalFormState): HTMLElement {
   const card = createCard('Medical History', 'ri-health-book-line');
@@ -14,7 +15,7 @@ export function medicalHistorySection(state: LocalFormState): HTMLElement {
   );
 
   const checkboxWrapper = createElement('div', 'checkbox-wrapper');
-  ['None', 'Diabetes', 'Hypertension', 'Asthma', 'Other'].forEach((disease) => {
+  chronicDiseasesConst.forEach((disease) => {
     const label = createElement('label', 'check-box');
     const input = createElement('input');
     input.type = 'checkbox';

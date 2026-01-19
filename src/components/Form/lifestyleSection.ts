@@ -1,6 +1,7 @@
 import { createElement } from '../../utils/dom';
 import type { LocalFormState } from '../../interface/formStateType';
 import { createCard, createSelectGroup, createInputGroup } from '../../utils/formUtils';
+import { exerciseFrequencyConst } from '../../constants';
 
 export function lifestyleSection(state: LocalFormState): HTMLElement {
   const card = createCard('Lifestyle', 'ri-run-line');
@@ -13,7 +14,7 @@ export function lifestyleSection(state: LocalFormState): HTMLElement {
 
   const exError = createElement('small', 'error-msg');
 
-  ['Never', 'Occasionally', 'Regularly', 'Daily'].forEach((opt) => {
+  exerciseFrequencyConst.forEach((opt) => {
     const label = createElement('label', 'tile-option');
     const input = createElement('input');
     input.type = 'radio';

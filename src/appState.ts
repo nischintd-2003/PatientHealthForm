@@ -1,10 +1,6 @@
 import { eventBus } from './eventBus';
-import type { Patient } from './types';
-
-interface AppState {
-  patients: Patient[];
-  editingId: string | null;
-}
+import type { Patient } from './interface/patientType';
+import type { AppState } from './interface/appStateType';
 
 const savedData = localStorage.getItem('patients');
 const initialPatients = savedData ? JSON.parse(savedData) : [];

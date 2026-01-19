@@ -1,5 +1,5 @@
 import { createElement } from '../../utils/dom';
-import type { LocalFormState } from '../../types';
+import type { LocalFormState } from '../../interface/formStateType';
 import { createCard, createSelectGroup, createInputGroup } from '../../utils/formUtils';
 
 export function lifestyleSection(state: LocalFormState): HTMLElement {

@@ -1,5 +1,5 @@
 import { createElement } from '../../utils/dom';
-import type { LocalFormState } from '../../types';
+import type { LocalFormState } from '../../interface/formStateType';
 import { createCard } from '../../utils/formUtils';
 
 export function medicalHistorySection(state: LocalFormState): HTMLElement {

@@ -1,9 +1,5 @@
-import type { Patient } from './types';
-
-export interface ValidationResult {
-  isValid: boolean;
-  errors: Record<string, string>;
-}
+import type { Patient } from './interface/patientType';
+import type { ValidationResult } from './interface/validationResultType';
 
 export function validatePatient(p: Patient): ValidationResult {
   const errors: Record<string, string> = {

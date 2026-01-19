@@ -1,10 +1,10 @@
 import { createElement } from '../utils/dom';
-import type { LocalFormState } from '../types';
+import type { LocalFormState } from '../interface/formStateType';
 import { personalSection } from './Form/personalSection';
 import { vitalsSection } from './Form/vitalsSection';
 import { medicalHistorySection } from './Form/medicalHistorySection';
 import { lifestyleSection } from './Form/lifestyleSection';
-import type { Patient } from '../types';
+import type { Patient } from '../interface/patientType';
 import { validatePatient } from '../validationService';
 import { addPatient, getState, updatePatient } from '../appState';
 

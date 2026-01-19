@@ -1,5 +1,5 @@
 import { createElement } from './dom';
-import type { LocalFormState } from '../types';
+import type { LocalFormState } from '../interface/formStateType';
 
 export const createCard = (title: string, iconClass: string): HTMLElement => {
   const card = createElement('section', 'form-card');

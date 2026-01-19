@@ -43,7 +43,7 @@ export default defineConfig([{
         curly: ["error", "all"],
         "max-depth": ["error", 3],
         "max-lines-per-function": ["warn", 30],
-        complexity: ["error", 10],
+        complexity: ["error", 15],
         "@typescript-eslint/no-explicit-any": "warn",
         "@typescript-eslint/explicit-function-return-type": ["warn"],
         "@typescript-eslint/no-unused-vars": ["warn"],

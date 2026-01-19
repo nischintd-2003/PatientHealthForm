@@ -6,8 +6,11 @@ interface AppState {
   editingId: string | null;
 }
 
+const savedData = localStorage.getItem('patients');
+const initialPatients = savedData ? JSON.parse(savedData) : [];
+
 const state: AppState = {
-  patients: [],
+  patients: initialPatients,
   editingId: null,
 };
 
@@ -20,14 +23,14 @@ export function setEditingId(id: string | null): void {
   eventBus.publish();
 }
 
-export function stopEditingPatient() {
-  state.editingId = null;
+function save(): void {
+  localStorage.setItem('patients', JSON.stringify(state.patients));
   eventBus.publish();
 }
 
 export function addPatient(patient: Patient): void {
   state.patients.push(patient);
-  eventBus.publish();
+  save();
 }
 
 export function deletePatient(id: string): void {
@@ -35,7 +38,7 @@ export function deletePatient(id: string): void {
     state.editingId = null;
   }
   state.patients = state.patients.filter((p) => p.id !== id);
-  eventBus.publish();
+  save();
 }
 
 export function updatePatient(id: string, updates: Partial<Patient>): void {
@@ -43,6 +46,6 @@ export function updatePatient(id: string, updates: Partial<Patient>): void {
   if (index !== -1) {
     state.patients[index] = { ...state.patients[index], ...updates };
     state.editingId = null;
-    eventBus.publish();
+    save();
   }
 }

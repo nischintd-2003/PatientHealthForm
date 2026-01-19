@@ -23,13 +23,15 @@ export function Table(): HTMLElement {
   return container;
 }
 
+const tableLenght: string = String(tableHeadersConst.length);
+
 export function tableBody(): HTMLElement {
   const state = getState();
   const tbody = createElement('tbody');
   if (state.patients.length === 0) {
     const emptyRow = createElement('tr');
     const emptyCell = createElement('td', 'empty-cell', 'No records found.');
-    emptyCell.setAttribute('colspan', '16');
+    emptyCell.setAttribute('colspan', tableLenght);
     emptyRow.appendChild(emptyCell);
     tbody.appendChild(emptyRow);
   } else {

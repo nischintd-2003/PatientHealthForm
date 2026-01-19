@@ -1,23 +1,103 @@
 import { createElement } from '../utils/dom';
-import { getState } from '../appState';
+import { getState, deletePatient } from '../appState';
 
 export function Table(): HTMLElement {
-  const container = createElement('div', 'table-container');
-  const title = createElement('h3', '', 'Patient List');
-  const patients = getState().patients;
-  const count = createElement('p', '', `Total Patients: ${patients.length}`);
+  const container = createElement('div', 'display-patient-table');
+  const state = getState();
+  const table = createElement('table', 'patient-table');
 
-  const list = createElement('ul');
+  const thead = createElement('thead');
+  const headerRow = createElement('tr');
+  const headers = [
+    'Name',
+    'DOB',
+    'Email',
+    'Phone',
+    'Height',
+    'Weight',
+    'Blood',
+    'BP',
+    'Temp',
+    'Diseases',
+    'Meds',
+    'Allergies',
+    'Exercise',
+    'Sleep',
+    'Diet',
+    'Actions',
+  ];
 
-  patients.forEach((p) => {
-    const item = createElement('li', '', `${p.fullName} (${p.bloodType || 'N/A'})`);
-    list.appendChild(item);
+  headers.forEach((text) => {
+    const th = createElement('th', '', text);
+    headerRow.appendChild(th);
   });
+  thead.appendChild(headerRow);
+  table.appendChild(thead);
 
-  container.appendChild(list);
+  const tbody = createElement('tbody');
 
-  container.appendChild(title);
-  container.appendChild(count);
-  container.appendChild(list);
+  if (state.patients.length === 0) {
+    const emptyRow = createElement('tr');
+    const emptyCell = createElement('td', '', 'No records found.');
+    emptyCell.setAttribute('colspan', '16');
+    emptyCell.style.textAlign = 'center';
+    emptyCell.style.padding = '20px';
+    emptyCell.style.color = '#718096';
+    emptyRow.appendChild(emptyCell);
+    tbody.appendChild(emptyRow);
+  } else {
+    state.patients.forEach((p) => {
+      const row = createElement('tr');
+
+      const createCell = (text: string) => createElement('td', '', text);
+
+      const format = (val: any, suffix = '') =>
+        val !== null && val !== '' && val !== undefined ? `${val}${suffix}` : 'N/A';
+
+      const diseaseText = p.chronicDiseases?.length ? p.chronicDiseases.join(', ') : 'None';
+
+      row.appendChild(createCell(format(p.fullName)));
+      row.appendChild(createCell(format(p.dob)));
+      row.appendChild(createCell(format(p.email)));
+      row.appendChild(createCell(format(p.phone)));
+      row.appendChild(createCell(format(p.height, ' cm')));
+      row.appendChild(createCell(format(p.weight, ' kg')));
+      row.appendChild(createCell(format(p.bloodType)));
+      row.appendChild(createCell(format(p.bloodPressure)));
+      row.appendChild(createCell(format(p.bodyTemperature, '°C')));
+      row.appendChild(createCell(diseaseText));
+      row.appendChild(createCell(format(p.medications)));
+      row.appendChild(createCell(format(p.allergies)));
+      row.appendChild(createCell(format(p.exerciseFrequency)));
+      row.appendChild(createCell(format(p.sleepHours, ' hrs')));
+      row.appendChild(createCell(format(p.dietType)));
+
+      const actionCell = createElement('td');
+
+      const editBtn = createElement('button', 'edit', 'Edit');
+      editBtn.style.cssText =
+        'background-color:#ecc94b; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer; margin-right:5px;';
+      editBtn.onclick = () => {
+        alert('Edit logic coming in next step!');
+      };
+
+      const deleteBtn = createElement('button', 'del', 'Delete');
+      deleteBtn.style.cssText =
+        'background-color:#f56565; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;';
+      deleteBtn.onclick = () => {
+        if (confirm(`Are you sure you want to delete ${p.fullName}?`)) {
+          deletePatient(p.id);
+        }
+      };
+
+      actionCell.appendChild(editBtn);
+      actionCell.appendChild(deleteBtn);
+      row.appendChild(actionCell);
+      tbody.appendChild(row);
+    });
+  }
+
+  table.appendChild(tbody);
+  container.appendChild(table);
   return container;
 }

@@ -20,6 +20,7 @@ export function addPatient(patient: Patient): void {
 
 export function deletePatient(id: string): void {
   state.patients = state.patients.filter((p) => p.id !== id);
+  eventBus.publish();
 }
 
 export function updatePatient(id: string, updates: Partial<Patient>): void {

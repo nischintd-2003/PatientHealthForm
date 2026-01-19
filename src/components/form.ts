@@ -6,29 +6,53 @@ import { medicalHistorySection } from './Form/medicalHistorySection';
 import { lifestyleSection } from './Form/lifestyleSection';
 import type { Patient } from '../types';
 import { validatePatient } from '../validationService';
-import { addPatient } from '../appState';
+import { addPatient, getState, updatePatient } from '../appState';
 
 export function Form(): HTMLElement {
   const container = createElement('div', 'form-container');
 
-  const state: LocalFormState = {
-    fullName: '',
-    dob: '',
-    email: '',
-    phone: '',
-    height: null,
-    weight: null,
-    bloodType: '',
-    bloodPressure: '',
-    bodyTemperature: null,
-    medications: '',
-    allergies: '',
-    dietType: 'Standard',
-    sleepHours: null,
-    exerciseFrequency: '',
-    chronicDiseases: [],
-    privacyPolicy: false,
-  };
+  const globalState = getState();
+  const editingPatient = globalState.editingId
+    ? globalState.patients.find((p) => p.id === globalState.editingId)
+    : null;
+
+  const state: LocalFormState = editingPatient
+    ? {
+        fullName: editingPatient.fullName,
+        dob: editingPatient.dob,
+        email: editingPatient.email,
+        phone: editingPatient.phone,
+        height: editingPatient.height,
+        weight: editingPatient.weight,
+        bloodType: editingPatient.bloodType,
+        bloodPressure: editingPatient.bloodPressure || '',
+        bodyTemperature: editingPatient.bodyTemperature,
+        medications: editingPatient.medications || '',
+        allergies: editingPatient.allergies || '',
+        dietType: editingPatient.dietType,
+        sleepHours: editingPatient.sleepHours,
+        exerciseFrequency: editingPatient.exerciseFrequency,
+        chronicDiseases: editingPatient.chronicDiseases,
+        privacyPolicy: true,
+      }
+    : {
+        fullName: '',
+        dob: '',
+        email: '',
+        phone: '',
+        height: null,
+        weight: null,
+        bloodType: '',
+        bloodPressure: '',
+        bodyTemperature: null,
+        medications: '',
+        allergies: '',
+        dietType: 'Standard',
+        sleepHours: null,
+        exerciseFrequency: '',
+        chronicDiseases: [],
+        privacyPolicy: false,
+      };
 
   const form = createElement('form');
   form.id = 'healthForm';
@@ -54,7 +78,9 @@ export function Form(): HTMLElement {
   privacyGroup.appendChild(createElement('small', 'error-msg'));
 
   const submitBtn = createElement('button', 'btn-submit');
-  submitBtn.innerHTML = 'Submit Assessment <i class="ri-send-plane-fill"></i>';
+  submitBtn.innerHTML = editingPatient
+    ? 'Update Patient <i class="ri-save-line"></i>'
+    : 'Submit Assessment <i class="ri-send-plane-fill"></i>';
   submitBtn.type = 'button';
   submitBtn.onclick = handleSubmission;
 
@@ -98,8 +124,13 @@ export function Form(): HTMLElement {
       return;
     }
 
-    addPatient(patientData);
-    alert('Patient added successfully!');
+    if (editingPatient) {
+      updatePatient(editingPatient.id, patientData);
+      alert('Patient updated!');
+    } else {
+      addPatient(patientData);
+      alert('Patient added!');
+    }
   }
 
   function showErrors(errors: Record<string, string>): void {

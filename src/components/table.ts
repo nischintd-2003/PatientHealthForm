@@ -1,5 +1,5 @@
 import { createElement } from '../utils/dom';
-import { getState, deletePatient } from '../appState';
+import { getState, deletePatient, setEditingId } from '../appState';
 
 export function Table(): HTMLElement {
   const container = createElement('div', 'display-patient-table');
@@ -77,8 +77,14 @@ export function Table(): HTMLElement {
       const editBtn = createElement('button', 'edit', 'Edit');
       editBtn.style.cssText =
         'background-color:#ecc94b; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer; margin-right:5px;';
+
+      if (state.editingId === p.id) {
+        editBtn.disabled = true;
+        editBtn.style.opacity = '0.5';
+      }
+
       editBtn.onclick = () => {
-        alert('Edit logic coming in next step!');
+        setEditingId(p.id);
       };
 
       const deleteBtn = createElement('button', 'del', 'Delete');

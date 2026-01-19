@@ -123,10 +123,11 @@ body {
   padding: 12px 15px;
   text-align: left;
   white-space: nowrap;
+  color: var(--text-main);
 }
 
 .patient-table th {
-  background-color: #f8fafc;
+  background-color: var(--bg-page);
   color: var(--primary-dark);
   font-weight: 600;
   top: 0;
@@ -193,7 +194,7 @@ body {
   margin-bottom: 8px;
   font-weight: 600;
   font-size: 0.9rem;
-  color: #4a5568;
+  color: var(--text-muted);
 }
 
 #healthForm .required::after {
@@ -215,7 +216,7 @@ textarea {
   font-size: 0.95rem;
   color: var(--text-main);
   transition: all 0.2s;
-  background: #fff;
+  background: var(--bg-card);
 }
 
 #healthForm input:focus,
@@ -228,7 +229,7 @@ textarea {
 
 #healthForm input::placeholder,
 #healthForm textarea::placeholder {
-  color: #cbd5e0;
+  color: var(--text-muted);
 }
 
 #healthForm textarea {
@@ -273,7 +274,7 @@ textarea {
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s;
-  background: #fff;
+  background: var(--bg-card);
   font-weight: normal;
 }
 

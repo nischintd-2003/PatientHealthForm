@@ -4,8 +4,11 @@ import PersonalSection from './personal-section';
 import VitalsSection from './vitals-section';
 import MedicalHistorySection from './medical-history-section';
 import LifestyleSection from './lifestyle-section';
+import FormFooter from './form-footer';
+import { useAppContext } from '../../context/app-context';
 
 export default function Form() {
+  const { state, dispatch } = useAppContext();
   const [form, setForm] = useState<LocalFormState>(InitialFormState);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -16,6 +19,10 @@ export default function Form() {
     setForm((prev) => ({ ...prev, [name]: value }));
   }
 
+  function handlePrivacyChange(checked: boolean) {
+    setForm((prev) => ({ ...prev, privacyPolicy: checked }));
+  }
+
   return (
     <div className="health-form-container">
       <form id="healthForm" noValidate>
@@ -23,6 +30,12 @@ export default function Form() {
         <VitalsSection form={form} errors={errors} onChange={handleChange} />
         <MedicalHistorySection form={form} errors={errors} onChange={handleChange} />
         <LifestyleSection form={form} errors={errors} onChange={handleChange} />
+        <FormFooter
+          editing={!!state.editingId}
+          form={form}
+          errors={errors}
+          onPrivacyChange={handlePrivacyChange}
+        />
       </form>
     </div>
   );

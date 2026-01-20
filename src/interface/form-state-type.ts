@@ -43,3 +43,10 @@ export interface FormSectionProps {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
   ) => void;
 }
+
+export interface FormFooterProps {
+  editing: boolean;
+  form: LocalFormState;
+  errors: Record<string, string>;
+  onPrivacyChange: (checked: boolean) => void;
+}

@@ -1,0 +1,433 @@
+/* Box sizing reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margins and paddings */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* ROOT VARIABLES */
+
+:root {
+  /* Colors */
+  --primary: #319795;
+  --primary-dark: #285e61;
+  --bg-page: #f7fafc;
+  --bg-card: #ffffff;
+  --text-main: #2d3748;
+  --text-muted: #718096;
+  --border: #e2e8f0;
+  --error: #e53e3e;
+
+  /* Spacing (8px grid system) */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --space-6: 48px;
+  --space-8: 64px;
+  --space-10: 80px;
+
+  /* Typography */
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.2s ease;
+  --transition-slow: 0.3s ease;
+}
+/* Dark Theme */
+[data-theme='dark'] {
+  --primary: #4fd1c5;
+  --primary-dark: #319795;
+  --bg-page: #1a202c;
+  --bg-card: #2d3748;
+  --text-main: #f7fafc;
+  --text-muted: #a0aec0;
+  --border: #4a5568;
+  --input-bg: #2d3748;
+}
+
+/* HTML & Body */
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  line-height: var(--line-height-normal);
+  padding: var(--space-2);
+}
+
+/* Theme toggle row  */
+
+.theme-toggle-row {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: var(--space-1);
+}
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  padding: var(--space-1);
+  border-radius: 50%;
+  transition: background-color var(--transition-base);
+  line-height: 1;
+}
+
+.theme-toggle:hover {
+  background-color: var(--border);
+}
+
+/* Page header */
+
+.page-header {
+  text-align: center;
+  margin-bottom: var(--space-5);
+}
+
+.logo-icon {
+  font-size: 3rem;
+  color: var(--primary);
+  margin-bottom: var(--space-1);
+}
+
+.page-header h1 {
+  font-size: 1.8rem;
+  color: var(--text-main);
+  margin-bottom: var(--space-1);
+}
+
+.page-header p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* Layout Wrappers */
+.app-layout {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.main-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.health-form-container {
+  flex: 1;
+  margin: 0;
+  min-width: 400px;
+}
+
+/* Table */
+
+.display-patient-table {
+  flex: 0 0 600px;
+  margin: 0;
+  overflow-x: auto;
+  background: var(--bg-card);
+  padding: var(--space-3);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.patient-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.patient-table th,
+.patient-table td {
+  border-bottom: 1px solid var(--border);
+  padding: var(--space-1) var(--space-2);
+  text-align: left;
+  white-space: nowrap;
+  color: var(--text-main);
+}
+
+.patient-table th {
+  background-color: var(--bg-page);
+  color: var(--primary-dark);
+  font-weight: var(--font-weight-semibold);
+  top: 0;
+}
+
+.patient-table .empty-cell {
+  padding: var(--space-2);
+  color: var(--text-muted);
+}
+
+/* Form Cards */
+
+#healthForm .form-card {
+  background: var(--bg-card);
+  padding: var(--space-4);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  margin-bottom: var(--space-3);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+#healthForm .card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-bottom: var(--space-3);
+  border-bottom: 1px solid var(--bg-page);
+  padding-bottom: var(--space-2);
+}
+
+#healthForm .card-header i {
+  font-size: 1.4rem;
+  color: var(--primary);
+}
+
+#healthForm .card-header h3 {
+  font-size: 1.1rem;
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Grid System */
+#healthForm .row {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-2);
+}
+
+#healthForm .col {
+  flex: 1;
+  min-width: 250px;
+}
+
+#healthForm .col-third {
+  flex: 1;
+  min-width: 150px;
+}
+
+/* Form Inputs & Label */
+#healthForm .form-group {
+  margin-bottom: var(--space-2);
+  position: relative;
+}
+
+#healthForm label {
+  display: block;
+  margin-bottom: var(--space-1);
+  font-weight: var(--font-weight-semibold);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+#healthForm .required::after {
+  content: ' *';
+  color: var(--error);
+}
+
+#healthForm input[type='text'],
+#healthForm input[type='email'],
+#healthForm input[type='tel'],
+#healthForm input[type='date'],
+#healthForm input[type='number'],
+#healthForm select,
+textarea {
+  width: 100%;
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  color: var(--text-main);
+  transition: all var(--transition-base);
+  background: var(--bg-card);
+}
+
+#healthForm input:focus,
+#healthForm select:focus,
+#healthForm textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: var(--shadow-md);
+}
+
+#healthForm input::placeholder,
+#healthForm textarea::placeholder {
+  color: var(--text-muted);
+}
+
+#healthForm textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/*  Form Checkbox & Radio Groups */
+
+#healthForm .checkbox-wrapper {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-top: var(--space-1);
+}
+
+#healthForm .check-box {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-weight: var(--font-weight-normal);
+  cursor: pointer;
+}
+
+#healthForm input[type='checkbox'] {
+  width: var(--space-2);
+  height: var(--space-2);
+  accent-color: var(--primary);
+}
+
+#healthForm .tile-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--space-2);
+}
+
+#healthForm .tile-option {
+  display: flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  background: var(--bg-card);
+  font-weight: var(--font-weight-normal);
+}
+
+#healthForm .tile-option:hover {
+  border-color: var(--primary);
+}
+
+#healthForm .tile-option:has(input:checked) {
+  border-color: var(--primary);
+  background-color: #e6fffa;
+}
+
+#healthForm .tile-option input {
+  margin-right: var(--space-1);
+  accent-color: var(--primary);
+}
+
+/* Buttons */
+#healthForm .btn-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  padding: var(--space-2);
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  font-size: 1rem;
+}
+#healthForm .btn-submit:hover {
+  background-color: var(--primary-dark);
+}
+
+.patient-table .edit-btn {
+  background-color: #ecc94b;
+  color: white;
+  border: none;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  margin-right: var(--space-1);
+}
+
+.patient-table .del-btn {
+  background-color: #f56565;
+  color: white;
+  border: none;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+/* Error Messages */
+.error-msg {
+  color: var(--error);
+  font-size: 0.8rem;
+  margin-top: var(--space-1);
+  display: block;
+  min-height: 1.2em;
+}
+.form-group.error input,
+.form-group.error select {
+  border-color: var(--error);
+}
+
+/* Form Footer */
+.footer-actions .form-group {
+  text-align: center;
+  margin-bottom: var(--space-2);
+}
+
+.footer-actions .form-group .check-box {
+  justify-content: center;
+}
+
+.footer-actions .form-group .check-box span {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Responsive */
+
+@media (max-width: 1050px) {
+  .display-patient-table {
+    flex: 1 1 100%;
+    min-width: 100%;
+  }
+}

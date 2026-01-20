@@ -35,3 +35,11 @@ export const InitialFormState: LocalFormState = {
   chronicDiseases: [],
   privacyPolicy: false,
 };
+
+export interface FormSectionProps {
+  form: LocalFormState;
+  errors: Record<string, string>;
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
+  ) => void;
+}

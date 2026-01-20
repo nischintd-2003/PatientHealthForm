@@ -16,3 +16,22 @@ export interface LocalFormState {
   chronicDiseases: string[];
   privacyPolicy: boolean;
 }
+
+export const InitialFormState: LocalFormState = {
+  fullName: '',
+  dob: '',
+  email: '',
+  phone: '',
+  height: null,
+  weight: null,
+  bloodType: '',
+  bloodPressure: '',
+  bodyTemperature: null,
+  medications: '',
+  allergies: '',
+  dietType: 'Standard',
+  sleepHours: null,
+  exerciseFrequency: '',
+  chronicDiseases: [],
+  privacyPolicy: false,
+};

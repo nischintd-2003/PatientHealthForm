@@ -18,6 +18,7 @@ export function patientToForm(p: Patient): LocalFormState {
     exerciseFrequency: p.exerciseFrequency ?? '',
     sleepHours: p.sleepHours ?? null,
     dietType: p.dietType ?? 'Standard',
+    privacyPolicy: true,
   };
 }
 

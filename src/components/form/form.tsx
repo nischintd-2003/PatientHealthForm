@@ -3,6 +3,7 @@ import { InitialFormState, type LocalFormState } from '../../interface/form-stat
 import PersonalSection from './personal-section';
 import VitalsSection from './vitals-section';
 import MedicalHistorySection from './medical-history-section';
+import LifestyleSection from './lifestyle-section';
 
 export default function Form() {
   const [form, setForm] = useState<LocalFormState>(InitialFormState);
@@ -21,6 +22,7 @@ export default function Form() {
         <PersonalSection form={form} errors={errors} onChange={handleChange} />
         <VitalsSection form={form} errors={errors} onChange={handleChange} />
         <MedicalHistorySection form={form} errors={errors} onChange={handleChange} />
+        <LifestyleSection form={form} errors={errors} onChange={handleChange} />
       </form>
     </div>
   );

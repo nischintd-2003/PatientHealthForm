@@ -5,7 +5,8 @@ type Action =
   | { type: 'LOAD_FROM_STORAGE'; payload: AppState }
   | { type: 'ADD_PATIENT'; payload: Patient }
   | { type: 'UPDATE_PATIENT'; payload: Patient }
-  | { type: 'DELETE_PATIENT'; payload: string };
+  | { type: 'DELETE_PATIENT'; payload: string }
+  | { type: 'SET_EDITING'; payload: string | null };
 
 export function appReducer(state: AppState, action: Action): AppState {
   switch (action.type) {
@@ -25,6 +26,12 @@ export function appReducer(state: AppState, action: Action): AppState {
       return {
         ...state,
         patients: state.patients.filter((p) => p.id !== action.payload),
+      };
+
+    case 'SET_EDITING':
+      return {
+        ...state,
+        editingId: action.payload,
       };
 
     default:

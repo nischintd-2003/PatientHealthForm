@@ -32,7 +32,7 @@ export function formToPatient(form: LocalFormState, id: string | null): Patient 
     height: form.height,
     weight: form.weight,
     bloodType: form.bloodType,
-    bloodPressure: form.bloodPressure,
+    bloodPressure: form.bloodPressure ?? 0,
     bodyTemperature: form.bodyTemperature,
     chronicDiseases: form.chronicDiseases,
     medications: form.medications,

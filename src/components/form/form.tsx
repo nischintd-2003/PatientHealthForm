@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { InitialFormState, type LocalFormState } from '../../interface/form-state-type';
 import PersonalSection from './personal-section';
+import VitalsSection from './vitals-section';
 
 export default function Form() {
   const [form, setForm] = useState<LocalFormState>(InitialFormState);
@@ -17,6 +18,7 @@ export default function Form() {
     <div className="health-form-container">
       <form id="healthForm" noValidate>
         <PersonalSection form={form} errors={errors} onChange={handleChange} />
+        <VitalsSection form={form} errors={errors} onChange={handleChange} />
       </form>
     </div>
   );

@@ -1,5 +1,4 @@
-import { createContext, useContext, useReducer, useEffect } from 'react';
-import type { ReactNode } from 'react';
+import { createContext, useContext, useReducer, useEffect, type ReactNode } from 'react';
 import { appReducer } from './app-reducer';
 import type { AppState } from '../interface/app-state-type';
 import { loadStateFromStorage, saveStateToStorage } from '../utilities/storage';

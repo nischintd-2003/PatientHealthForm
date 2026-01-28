@@ -1,13 +1,7 @@
+import type { AppAction } from '../interface/app-action-type';
 import type { AppState } from '../interface/app-state-type';
-import type { Patient } from '../interface/patient-type';
 
-type Action =
-  | { type: 'ADD_PATIENT'; payload: Patient }
-  | { type: 'UPDATE_PATIENT'; payload: Patient }
-  | { type: 'DELETE_PATIENT'; payload: string }
-  | { type: 'SET_EDITING'; payload: string | null };
-
-export function appReducer(state: AppState, action: Action): AppState {
+export function appReducer(state: AppState, action: AppAction): AppState {
   switch (action.type) {
     case 'ADD_PATIENT':
       return { ...state, patients: [...state.patients, action.payload] };

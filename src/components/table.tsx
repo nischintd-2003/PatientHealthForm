@@ -28,11 +28,6 @@ function TableHead() {
 function TableBody() {
   const { state, dispatch } = useAppContext();
   const { patients, editingId } = state;
-
-  const format = (val: any, suffix = ''): string => {
-    return val !== null && val !== '' && val !== undefined ? `${val}${suffix}` : 'N/A';
-  };
-
   if (patients.length === 0) {
     return (
       <tbody>
@@ -94,4 +89,8 @@ function TableBody() {
       })}
     </tbody>
   );
+}
+
+function format(val: any, suffix = ''): string {
+  return val !== null && val !== '' && val !== undefined ? `${val}${suffix}` : 'N/A';
 }

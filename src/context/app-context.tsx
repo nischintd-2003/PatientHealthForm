@@ -2,6 +2,7 @@ import { createContext, useContext, useReducer, useEffect, type ReactNode } from
 import { appReducer } from './app-reducer';
 import type { AppState } from '../interface/app-state-type';
 import { loadStateFromStorage, saveStateToStorage } from '../utilities/storage';
+import type { AppAction } from '../interface/app-action-type';
 
 const initialState: AppState = {
   patients: [],
@@ -10,7 +11,7 @@ const initialState: AppState = {
 
 const AppContext = createContext<{
   state: AppState;
-  dispatch: React.Dispatch<any>;
+  dispatch: React.Dispatch<AppAction>;
 }>({
   state: initialState,
   dispatch: () => {},

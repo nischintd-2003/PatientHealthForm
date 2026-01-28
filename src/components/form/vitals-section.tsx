@@ -68,7 +68,7 @@ export default function VitalsSection({ form, errors, onChange }: FormSectionPro
         <div className="form-group col">
           <label>Body Temperature (°C)</label>
           <input
-            name="bodyTemp"
+            name="bodyTemperature"
             value={form.bodyTemperature ?? ''}
             onChange={onChange}
             placeholder="37.5"

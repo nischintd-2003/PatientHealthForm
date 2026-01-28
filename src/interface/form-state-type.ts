@@ -49,4 +49,5 @@ export interface FormFooterProps {
   form: LocalFormState;
   errors: Record<string, string>;
   onPrivacyChange: (checked: boolean) => void;
+  handleSubmission: (e: React.FormEvent<Element>) => void;
 }

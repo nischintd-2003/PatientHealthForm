@@ -1,6 +1,12 @@
 import type { FormFooterProps } from '../../interface/form-state-type';
 
-export default function FormFooter({ editing, form, errors, onPrivacyChange }: FormFooterProps) {
+export default function FormFooter({
+  editing,
+  form,
+  errors,
+  onPrivacyChange,
+  handleSubmission,
+}: FormFooterProps) {
   return (
     <div className="footer-actions">
       {!editing && (
@@ -25,7 +31,7 @@ export default function FormFooter({ editing, form, errors, onPrivacyChange }: F
         </div>
       )}
 
-      <button type="submit" className="btn-submit">
+      <button type="submit" className="btn-submit" onClick={handleSubmission}>
         {editing ? (
           <>
             Update Assessment <i className="ri-save-line"></i>

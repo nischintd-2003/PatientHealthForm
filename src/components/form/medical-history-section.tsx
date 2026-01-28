@@ -39,7 +39,7 @@ export default function MedicalHistorySection({ form, errors, onChange }: FormSe
               <label key={disease} className="check-box">
                 <input
                   type="checkbox"
-                  name="disease"
+                  name="chronicDiseases"
                   value={disease}
                   checked={checked}
                   onChange={(e) => handleDiseaseChange(disease, e.target.checked)}

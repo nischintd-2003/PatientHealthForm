@@ -2,7 +2,6 @@ import type { AppState } from '../interface/app-state-type';
 import type { Patient } from '../interface/patient-type';
 
 type Action =
-  | { type: 'LOAD_FROM_STORAGE'; payload: AppState }
   | { type: 'ADD_PATIENT'; payload: Patient }
   | { type: 'UPDATE_PATIENT'; payload: Patient }
   | { type: 'DELETE_PATIENT'; payload: string }
@@ -10,9 +9,6 @@ type Action =
 
 export function appReducer(state: AppState, action: Action): AppState {
   switch (action.type) {
-    case 'LOAD_FROM_STORAGE':
-      return { ...action.payload };
-
     case 'ADD_PATIENT':
       return { ...state, patients: [...state.patients, action.payload] };
 
@@ -26,6 +22,7 @@ export function appReducer(state: AppState, action: Action): AppState {
       return {
         ...state,
         patients: state.patients.filter((p) => p.id !== action.payload),
+        editingId: state.editingId === action.payload ? null : state.editingId,
       };
 
     case 'SET_EDITING':

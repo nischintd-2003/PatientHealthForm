@@ -36,7 +36,7 @@ export default function VitalsSection({ form, errors, onChange }: FormSectionPro
         </div>
 
         <div className="form-group col-third">
-          <label>Blood Type</label>
+          <label className="required">Blood Type</label>
           <select name="bloodType" value={form.bloodType} onChange={onChange}>
             <option value="">Select</option>
             <option value="A+">A+</option>

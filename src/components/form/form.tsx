@@ -17,6 +17,8 @@ export default function Form() {
 
   useEffect(() => {
     if (!state.editingId) {
+      setForm(InitialFormState);
+      setErrors({});
       return;
     }
 

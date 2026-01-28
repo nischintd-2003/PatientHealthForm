@@ -17,14 +17,9 @@ const AppContext = createContext<{
 });
 
 export function AppProvider({ children }: { children: ReactNode }) {
-  const [state, dispatch] = useReducer(appReducer, initialState);
+  const persistedState = loadStateFromStorage();
 
-  useEffect(() => {
-    const loaded = loadStateFromStorage();
-    if (loaded) {
-      dispatch({ type: 'LOAD_FROM_STORAGE', payload: loaded });
-    }
-  }, []);
+  const [state, dispatch] = useReducer(appReducer, persistedState ?? initialState);
 
   useEffect(() => {
     saveStateToStorage(state);

@@ -1,3 +1,5 @@
+import { tableHeadersConst } from '../config';
+
 export default function Table() {
   return (
     <div className="display-patient-table">
@@ -10,7 +12,15 @@ export default function Table() {
 }
 
 function TableHead() {
-  return <thead></thead>;
+  return (
+    <thead>
+      <tr>
+        {tableHeadersConst.map((header) => (
+          <th key={header}>{header}</th>
+        ))}
+      </tr>
+    </thead>
+  );
 }
 
 function TableBody() {

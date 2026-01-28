@@ -33,7 +33,7 @@ export default function LifestyleSection({ form, errors, onChange }: FormSection
           </div>
 
           {errors.exerciseFrequency && (
-            <small className="error-message">{errors.exerciseFrequency}</small>
+            <small className="error-msg">{errors.exerciseFrequency}</small>
           )}
         </div>
 
@@ -50,7 +50,7 @@ export default function LifestyleSection({ form, errors, onChange }: FormSection
               value={form.sleepHours ?? ''}
               onChange={onChange}
             />
-            {errors.sleepHours && <small className="error-message">{errors.sleepHours}</small>}
+            {errors.sleepHours && <small className="error-msg">{errors.sleepHours}</small>}
           </div>
 
           <div className="form-group">
@@ -62,7 +62,7 @@ export default function LifestyleSection({ form, errors, onChange }: FormSection
                 </option>
               ))}
             </select>
-            {errors.dietType && <small className="error-message">{errors.dietType}</small>}
+            {errors.dietType && <small className="error-msg">{errors.dietType}</small>}
           </div>
         </div>
       </div>

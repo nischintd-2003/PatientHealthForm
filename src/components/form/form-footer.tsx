@@ -24,7 +24,7 @@ export default function FormFooter({
           </label>
 
           {errors.privacyPolicy && (
-            <small className="error-message" style={{ textAlign: 'center' }}>
+            <small className="error-msg" style={{ textAlign: 'center' }}>
               {errors.privacyPolicy}
             </small>
           )}

@@ -50,9 +50,7 @@ export default function MedicalHistorySection({ form, errors, onChange }: FormSe
           })}
         </div>
 
-        {errors.chronicDiseases && (
-          <small className="error-message">{errors.chronicDiseases}</small>
-        )}
+        {errors.chronicDiseases && <small className="error-msg">{errors.chronicDiseases}</small>}
       </div>
 
       <div className="row">

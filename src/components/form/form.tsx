@@ -47,7 +47,9 @@ export default function Form() {
     });
   }, [state.editingId, state.patients]);
 
-  function handleChange(e: any) {
+  function handleChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
+  ) {
     const { name, value } = e.target;
 
     setForm((prev) => ({ ...prev, [name]: value }));
@@ -97,8 +99,10 @@ export default function Form() {
 
     if (state.editingId) {
       dispatch({ type: 'UPDATE_PATIENT', payload: patient });
+      alert('Patient updated!');
     } else {
       dispatch({ type: 'ADD_PATIENT', payload: patient });
+      alert('Patient added!');
     }
 
     setForm(InitialFormState);

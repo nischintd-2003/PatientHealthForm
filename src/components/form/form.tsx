@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { InitialFormState, type LocalFormState } from '../../interface/form-state-type';
 import PersonalSection from './personal-section';
 import VitalsSection from './vitals-section';
@@ -14,6 +14,36 @@ export default function Form() {
   const { state, dispatch } = useAppContext();
   const [form, setForm] = useState<LocalFormState>(InitialFormState);
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    if (!state.editingId) {
+      return;
+    }
+
+    const patient = state.patients.find((p) => p.id === state.editingId);
+    if (!patient) {
+      return;
+    }
+
+    setForm({
+      fullName: patient.fullName,
+      dob: patient.dob,
+      email: patient.email,
+      phone: patient.phone,
+      height: patient.height,
+      weight: patient.weight,
+      bloodType: patient.bloodType,
+      bloodPressure: patient.bloodPressure ?? '',
+      bodyTemperature: patient.bodyTemperature,
+      medications: patient.medications ?? '',
+      allergies: patient.allergies ?? '',
+      dietType: patient.dietType,
+      sleepHours: patient.sleepHours,
+      exerciseFrequency: patient.exerciseFrequency,
+      chronicDiseases: patient.chronicDiseases,
+      privacyPolicy: true,
+    });
+  }, [state.editingId, state.patients]);
 
   function handleChange(e: any) {
     const { name, value } = e.target;

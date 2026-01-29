@@ -6,7 +6,7 @@ import MedicalHistorySection from './medical-history-section';
 import LifestyleSection from './lifestyle-section';
 import FormFooter from './form-footer';
 import { useAppContext } from '../../context/app-context';
-import { formToPatient } from '../../utilities/patient-mappers';
+import { formToPatient, patientToForm } from '../../utilities/patient-mappers';
 import type { Patient } from '../../interface/patient-type';
 import { validatePatient } from '../../services/validation-service';
 
@@ -27,24 +27,7 @@ export default function Form() {
       return;
     }
 
-    setForm({
-      fullName: patient.fullName,
-      dob: patient.dob,
-      email: patient.email,
-      phone: patient.phone,
-      height: patient.height,
-      weight: patient.weight,
-      bloodType: patient.bloodType,
-      bloodPressure: patient.bloodPressure ?? '',
-      bodyTemperature: patient.bodyTemperature,
-      medications: patient.medications ?? '',
-      allergies: patient.allergies ?? '',
-      dietType: patient.dietType,
-      sleepHours: patient.sleepHours,
-      exerciseFrequency: patient.exerciseFrequency,
-      chronicDiseases: patient.chronicDiseases,
-      privacyPolicy: true,
-    });
+    setForm(patientToForm(patient));
   }, [state.editingId, state.patients]);
 
   function handleChange(

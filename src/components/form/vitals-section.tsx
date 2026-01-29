@@ -12,6 +12,7 @@ export default function VitalsSection({ form, errors, onChange }: FormSectionPro
         <div className="form-group col-third">
           <label className="required">Height (cm)</label>
           <input
+            id="height"
             name="height"
             min="150"
             max="250"
@@ -25,6 +26,7 @@ export default function VitalsSection({ form, errors, onChange }: FormSectionPro
         <div className="form-group col-third">
           <label className="required">Weight (kg)</label>
           <input
+            id="weight"
             name="weight"
             min="30"
             max="200"
@@ -37,7 +39,7 @@ export default function VitalsSection({ form, errors, onChange }: FormSectionPro
 
         <div className="form-group col-third">
           <label className="required">Blood Type</label>
-          <select name="bloodType" value={form.bloodType} onChange={onChange}>
+          <select id="bloodType" name="bloodType" value={form.bloodType} onChange={onChange}>
             <option value="">Select</option>
             <option value="A+">A+</option>
             <option value="A-">A-</option>
@@ -56,6 +58,7 @@ export default function VitalsSection({ form, errors, onChange }: FormSectionPro
         <div className="form-group col">
           <label>Blood Pressure (mmHg)</label>
           <input
+            id="bloodPressure"
             name="bloodPressure"
             value={form.bloodPressure}
             onChange={onChange}
@@ -68,6 +71,7 @@ export default function VitalsSection({ form, errors, onChange }: FormSectionPro
         <div className="form-group col">
           <label>Body Temperature (°C)</label>
           <input
+            id="bodyTemperature"
             name="bodyTemperature"
             value={form.bodyTemperature ?? ''}
             onChange={onChange}

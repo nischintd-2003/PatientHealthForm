@@ -11,12 +11,18 @@ export default function PersonalSection({ form, errors, onChange }: FormSectionP
       <div className="row">
         <div className="form-group col">
           <label className="required">Full Name</label>
-          <input name="fullName" value={form.fullName} onChange={onChange} type="text" />
+          <input
+            id="fullName"
+            name="fullName"
+            value={form.fullName}
+            onChange={onChange}
+            type="text"
+          />
           {errors.fullName && <small className="error-msg">{errors.fullName}</small>}
         </div>
         <div className="form-group col">
           <label className="required">Date of Birth</label>
-          <input name="dob" value={form.dob} onChange={onChange} type="date" />
+          <input id="dob" name="dob" value={form.dob} onChange={onChange} type="date" />
           {errors.dob && <small className="error-msg">{errors.dob}</small>}
         </div>
       </div>
@@ -24,12 +30,12 @@ export default function PersonalSection({ form, errors, onChange }: FormSectionP
       <div className="row">
         <div className="form-group col">
           <label className="required">Email</label>
-          <input name="email" value={form.email} onChange={onChange} type="email" />
+          <input id="email" name="email" value={form.email} onChange={onChange} type="email" />
           {errors.email && <small className="error-msg">{errors.email}</small>}
         </div>
         <div className="form-group col">
           <label className="required">Phone</label>
-          <input name="phone" value={form.phone} onChange={onChange} type="tel" />
+          <input id="phone" name="phone" value={form.phone} onChange={onChange} type="tel" />
           {errors.phone && <small className="error-msg">{errors.phone}</small>}
         </div>
       </div>
